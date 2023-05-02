@@ -9,22 +9,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class BienesInteresCultural
- * 
+ * Class BienInteresCultural
+ *
  * @property int $id
  * @property string $nombre
  * @property string|null $descripción
  * @property int $municipio_id
  * @property int $localidad_id
  * @property int $provincia_id
- * 
- * @property Localidade $localidade
+ *
+ * @property Localidad $localidad
  * @property Municipio $municipio
  * @property Provincia $provincia
  *
  * @package App\Models
  */
-class BienesInteresCultural extends Model
+class BienInteresCultural extends Model
 {
 	protected $table = 'bienes_interes_cultural';
 	public $timestamps = false;
@@ -43,9 +43,9 @@ class BienesInteresCultural extends Model
 		'provincia_id'
 	];
 
-	public function localidade()
+	public function localidad()
 	{
-		return $this->belongsTo(Localidade::class, 'localidad_id');
+		return $this->belongsTo(Localidad::class, 'localidad_id');
 	}
 
 	public function municipio()

@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Municipio
- * 
+ *
  * @property int $id
  * @property string $nombre
  * @property int $provincia_id
- * 
+ *
  * @property Provincia $provincia
- * @property Collection|BienesInteresCultural[] $bienes_interes_culturals
- * @property Collection|Localidade[] $localidades
+ * @property Collection|BienInteresCultural[] $bienes_interes_cultural
+ * @property Collection|Localidad[] $localidades
  *
  * @package App\Models
  */
@@ -41,13 +41,13 @@ class Municipio extends Model
 		return $this->belongsTo(Provincia::class);
 	}
 
-	public function bienes_interes_culturals()
+	public function bienes_interes_cultural()
 	{
-		return $this->hasMany(BienesInteresCultural::class);
+		return $this->hasMany(BienInteresCultural::class);
 	}
 
 	public function localidades()
 	{
-		return $this->hasMany(Localidade::class);
+		return $this->hasMany(Localidad::class);
 	}
 }

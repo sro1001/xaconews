@@ -11,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Provincia
- * 
+ *
  * @property int $id
  * @property string $nombre
- * 
- * @property Collection|BienesInteresCultural[] $bienes_interes_culturals
+ *
+ * @property Collection|BienInteresCultural[] $bienes_interes_cultural
  * @property Collection|Municipio[] $municipios
  *
  * @package App\Models
@@ -29,9 +29,9 @@ class Provincia extends Model
 		'nombre'
 	];
 
-	public function bienes_interes_culturals()
+	public function bienes_interes_cultural()
 	{
-		return $this->hasMany(BienesInteresCultural::class);
+		return $this->hasMany(BienInteresCultural::class);
 	}
 
 	public function municipios()

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Usuario
- * 
+ *
  * @property int $id
  * @property string $nombre_completo
  * @property string $email
@@ -22,8 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $activo
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * 
- * @property Role $role
+ *
+ * @property Rol $rol
  *
  * @package App\Models
  */
@@ -50,8 +50,8 @@ class Usuario extends Model
 		'activo'
 	];
 
-	public function role()
+	public function rol()
 	{
-		return $this->belongsTo(Role::class, 'rol_id');
+		return $this->belongsTo(Rol::class, 'rol_id');
 	}
 }

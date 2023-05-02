@@ -10,18 +10,18 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Localidade
- * 
+ * Class Localidad
+ *
  * @property int $id
  * @property string $nombre
  * @property int $municipio_id
- * 
+ *
  * @property Municipio $municipio
- * @property Collection|BienesInteresCultural[] $bienes_interes_culturals
+ * @property Collection|BienInteresCultural[] $bienes_interes_cultural
  *
  * @package App\Models
  */
-class Localidade extends Model
+class Localidad extends Model
 {
 	protected $table = 'localidades';
 	public $timestamps = false;
@@ -40,8 +40,8 @@ class Localidade extends Model
 		return $this->belongsTo(Municipio::class);
 	}
 
-	public function bienes_interes_culturals()
+	public function bienes_interes_cultural()
 	{
-		return $this->hasMany(BienesInteresCultural::class, 'localidad_id');
+		return $this->hasMany(BienInteresCultural::class, 'localidad_id');
 	}
 }
