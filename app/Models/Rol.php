@@ -28,6 +28,10 @@ class Rol extends Model
 		'nombre'
 	];
 
+	const ADMIN = 1;
+    const EDITOR = 2;
+	const LECTOR = 3;
+
 	public function usuarios()
 	{
 		return $this->hasMany(Usuario::class, 'rol_id');
