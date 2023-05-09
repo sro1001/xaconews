@@ -8,6 +8,13 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class Usuario
@@ -27,9 +34,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class Usuario extends Model
+class Usuario extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
-	protected $table = 'usuarios';
+	use Authenticatable, Authorizable, CanResetPassword, Notifiable;
+
+
+	protected $table = 'users';
 
 	protected $casts = [
 		'rol_id' => 'int',
