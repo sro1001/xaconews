@@ -24,3 +24,12 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('password/sendReset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@resetPassword')->name('password.reset');
+Route::post('password/update', 'Auth\ResetPasswordController@updatePassword');
+
+
+
+Route::get('noticias', 'Noticias\NoticiasController@noticias')->name('noticias');
