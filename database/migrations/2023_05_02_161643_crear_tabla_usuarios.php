@@ -20,7 +20,7 @@ class CrearTablaUsuarios extends Migration
             $table->integer('rol_id')->unsigned();
             $table->string('password');
             $table->string('telefono')->nullable();
-            $table->boolean('activo')->default('1');;
+            $table->boolean('activo')->default('1');
             $table->timestamps();
 
             $table->foreign('rol_id')->references('id')->on('roles');

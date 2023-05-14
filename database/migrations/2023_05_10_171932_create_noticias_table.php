@@ -20,8 +20,10 @@ class CreateNoticiasTable extends Migration
             $table->integer('bien_interes_cultural_id')->unsigned();
             $table->integer('fuente_id')->unsigned();
             $table->datetime('fecha');
-            $table->longText('texto')->nullable();
+            $table->longText('html')->nullable();
+            $table->boolean('traducido')->default('0');
             $table->text('google_news_id');
+            $table->longText('texto')->nullable();
             $table->timestamps();
 
             $table->foreign('bien_interes_cultural_id')->references('id')->on('bienes_interes_cultural');
