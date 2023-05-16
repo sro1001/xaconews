@@ -33,14 +33,14 @@
         }
 
         a {
-            color: #80cbd3;
-            /*text-decoration:none;*/
+            /*color: #80cbd3;
+            text-decoration:none;*/
             font-weight: normal;
             font-style: normal;
         }
 
         a:hover {
-            color: #aaaaaa;
+            color: #1b330c;
             /*text-decoration:underline;*/
             font-weight: normal;
             font-style: normal;
@@ -150,10 +150,11 @@
 
 
 </head>
-<body bgcolor="#ffffff" style="background-color: #ffffff;margin: 0;padding: 0;font-family: Arial, sans-serif;">
-
-@yield('content')
-
+<body style="background-color: #1b330c;margin: 0;padding: 0;font-family: Arial, sans-serif;">
+    <div style="padding: 20px 0px 0px 20px;">
+        <img width="220" src="{{$message->embed(asset('img/logoLogin.png'))}}" />
+    </div>
+    @yield('content')
 </body>
 </html>
 
