@@ -57,4 +57,13 @@ class BienInteresCultural extends Model
 	{
 		return $this->belongsTo(Provincia::class);
 	}
+
+	public function obtenerCadenaFormatoGn(){
+		$nombre_bien_cultural = $this->nombre;
+		$nombre_bien_cultural_limpio = str_replace(" - ", " ",$nombre_bien_cultural);
+		$nombre_bien_cultural_separado = explode(" ",$nombre_bien_cultural_limpio);
+		$municipio_separado = explode(" ",$this->municipio->nombre);
+		$cadenaGn = array_merge($nombre_bien_cultural_separado, $municipio_separado);
+		return implode("+",$cadenaGn);
+	}
 }

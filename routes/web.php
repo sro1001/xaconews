@@ -31,5 +31,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@resetPassword
 Route::post('password/update', 'Auth\ResetPasswordController@updatePassword');
 
 
+Route::group(['prefix' => 'noticias', 'as' => 'noticias.'], function () {
+    Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizar_noticias')->name('sincronizar_noticias');
+});
 
-Route::get('noticias', 'Noticias\NoticiasController@noticias')->name('noticias');
