@@ -8,7 +8,6 @@ return [
     'RAPID_API' => [
         'URL' => 'https://full-text-rss.p.rapidapi.com/extract.php',
         'HOST' => 'full-text-rss.p.rapidapi.com',
-        'KEY' => '00ac508dd0msh485be7ea9e920b7p13cba6jsnf65359f940c6',
         'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
         'MAX_REDIRECTS' => 10,
         'TIMEOUT' => 30,
@@ -19,7 +18,6 @@ return [
         'CONTENT_PARAMETER' => 'text0'
     ],
     'CHATGPT' => [
-        'KEY' => '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',
         'QUESTION' => 'Can you delete the Html content in this text?'
     ]
 ];

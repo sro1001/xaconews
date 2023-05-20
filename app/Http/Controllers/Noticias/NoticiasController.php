@@ -80,7 +80,7 @@ class NoticiasController extends Controller
                         curl_setopt($llamada_texto_noticia, CURLOPT_POSTFIELDS, $cadena_post_data);
                         $array_header = [
                             "X-RapidAPI-Host: ".config('noticias.RAPID_API')['HOST'],
-                            "X-RapidAPI-Key: ".config('noticias.RAPID_API')['KEY'],
+                            "X-RapidAPI-Key: ".env('RAPID_API_KEY'),
                             "content-type: ".config('noticias.RAPID_API')['CONTENT_TYPE']
                         ];
                         curl_setopt($llamada_texto_noticia, CURLOPT_HTTPHEADER, $array_header);
