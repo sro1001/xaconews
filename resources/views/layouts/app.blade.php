@@ -10,7 +10,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!--  <script src="{{ asset('js/app.js') }}" defer></script>-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,9 +20,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/noticias.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" style="background-image: url('{{ asset('img/xacoNewsLogin2.jpg')}}');height: 100vh;">
+    <div id="app" style="background-image: url('{{ asset('img/xacoNewsLogin2.jpg')}}');    background-attachment: fixed;
+    background-size: cover;height: auto;min-height: 100vh;">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="background: #1b330c !important;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -76,5 +80,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('js')
 </body>
 </html>

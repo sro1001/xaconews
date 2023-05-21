@@ -66,4 +66,23 @@ class BienInteresCultural extends Model
 		$cadenaGn = array_merge($nombre_bien_cultural_separado, $municipio_separado);
 		return implode("+",$cadenaGn);
 	}
+
+	public static function obtenerIdsBienesPorMunicipio($municipio_id){
+		$bienes = BienInteresCultural::where('municipio_id','=',$municipio_id);
+		return $bienes->pluck('id')->toArray();
+	}
+
+	public static function obtenerIdsBienesPorProvincia($provincia_id){
+		$bienes = BienInteresCultural::where('provincia_id','=',$provincia_id);
+		return $bienes->pluck('id')->toArray();
+	}
+
+	public static function obtenerBienesBuscador(){
+		$bienes_culturales = BienInteresCultural::orderBy('nombre')->get();
+		$array_bienes_buscador = array();
+		foreach($bienes_culturales as $bien_cultural){
+			$array_bienes_buscador[$bien_cultural->id] = $bien_cultural->nombre.' - '.$bien_cultural->municipio->nombre;
+		}
+		return $array_bienes_buscador;
+	}
 }

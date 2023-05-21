@@ -1,6 +1,158 @@
-html {
-    height: 100%;
+.buscador{
+    background: whitesmoke;
+    border-radius: 20px;
 }
-body {
-    min-height: 100%;
+
+.titulo-buscador{
+    margin-bottom: 0.2em;
+    font-size: 25px;
+    font-weight: bold;
+    color: #1b330c;
+}
+
+.titulo-listado{
+    margin-bottom: 0.2em;
+    font-size: 25px;
+    font-weight: bold;
+    color: #1b330c;
+}
+
+.cnt-buscador{
+    background-color:whitesmoke;
+    width:100%;
+    display:inline-block;
+    float:left;
+    padding:0.5rem 0 1rem;
+    margin-bottom:1rem;
+    position:relative
+}
+
+.cnt-buscador .btn-search{
+    background-color: #1b330c;
+    color:white;
+    position:absolute;
+    right:1rem;
+    bottom:0;
+    margin-right:0;
+    margin-bottom:-19px;
+    font-size:15px;
+    background-image:url("../img/search.png");
+    background-repeat:no-repeat;
+    background-position:left center;
+    padding:0.6rem 1rem 0.5rem 3rem;
+    border:0;
+}
+
+.cnt-table1
+{
+  background-color: whitesmoke;
+  padding: 8px 12px;
+  label
+  {
+    margin: 0;
+  }
+  #tabla_info
+  {
+    //font-size: 14px;
+    //padding-top:25px;
+  }
+
+  .tabla_footer {
+    //text-transform: uppercase;
+    color: #555;
+    font-size: 17px;
+    font-weight: 300;
+    margin-top: 15px;
+    float: left;
+  }
+
+  .cnt-pagination
+  {
+    text-align: center;
+    ul
+    {
+      margin: 8px 0 0 0;
+      a
+      {
+        color: black;
+      }
+    }
+  }
+  ul.pagination
+  {
+    padding-top: 25px;
+    margin-left: 1em;
+    float: right;
+    a
+    {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+    li.current {
+      background-color: #1b330c;
+      a{
+        color: white;
+      }
+    }
+    li.previous {
+      background-color: #1b330c;
+      margin-right:1em ;
+      a{
+        color: white;
+      }
+    }
+    li.next {
+      background-color: #1b330c;
+      margin-left:1em ;
+      a{
+        color: white;
+      }
+    }
+  }
+}
+
+table.tabla1
+{
+  border: none !important;
+  *
+  {
+    border: none !important;
+  }
+  input[type="text"], select
+  {
+    margin-bottom: 0;
+  }
+  button.button
+  {
+    font-size: 14px;
+  }
+  thead tr
+  {
+    background-color: #fff;
+    th
+    {
+      font-size: 15px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  tbody tr
+  {
+    td
+    {
+      background-color: #ededed;
+      font-size: 13px;
+      color: #3e3e3e;
+    }
+    &:nth-child(2n) td
+    {
+      background-color: #fff;
+    }
+  }
+}
+
+.elemento-buscador{
+  display: inline-block;
 }

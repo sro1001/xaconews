@@ -9,9 +9,12 @@ use App\Models\SincronizacionNoticias;
 use App\Models\Usuario;
 use App\Models\Noticia;
 use App\Models\Fuente;
-use App\Models\Rol; 
+use App\Models\Rol;
+use App\Models\Municipio;
+use App\Models\Provincia;
 use Carbon\Carbon;
 use \Datetime;
+use Yajra\DataTables\DataTables;
 
 class NoticiasController extends Controller
 {
@@ -99,4 +102,71 @@ class NoticiasController extends Controller
             }
         }
     }
+
+    public function index(Request $request) {
+        if ($request->ajax()) {
+
+            $noticias = Noticia::query();
+            if (filled($request->get('titulo'))) {
+                $noticias = $noticias->where('titulo', 'LIKE', '%'.$request->get('titulo').'%');
+            }
+            if(filled($request->get('fuente_id'))){
+                $noticias = $noticias->where('fuente_id', '=', $request->get('fuente_id'));
+            }
+            if(filled($request->get('bien_cultural_id'))){
+                $noticias = $noticias->where('bien_interes_cultural_id', '=', $request->get('bien_cultural_id'));
+            }
+            if(filled($request->get('municipio_id'))){
+                $bienes_ids = BienInteresCultural::obtenerIdsBienesPorMunicipio($request->get('municipio_id'));
+                $noticias = $noticias->whereIn('bien_interes_cultural_id',$bienes_ids);
+            }
+            if(filled($request->get('provincia_id'))){
+                $bienes_ids = BienInteresCultural::obtenerIdsBienesPorProvincia($request->get('provincia_id'));
+                $noticias = $noticias->whereIn('bien_interes_cultural_id',$bienes_ids);
+            }
+
+            return Datatables::of($noticias->get())
+                ->addColumn('bien_cultural', function ($item) use (&$request) {
+                    return $item->bien_interes_cultural->nombre;
+                })
+                ->addColumn('municipio', function ($item) use (&$request) {
+                    return $item->bien_interes_cultural->municipio->nombre;
+                })
+                ->addColumn('provincia', function ($item) use (&$request) {
+                    return $item->bien_interes_cultural->provincia->nombre;
+                })
+                ->addColumn('fuente', function ($item) use (&$request) {
+                    return $item->fuente->nombre;
+                })
+                ->addColumn('action', function ($item) use (&$request) {
+                    return '<a href="'.route('noticias.ver', $item->id).'" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
+                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;
+                        <a class="btn btn-xs btn-primary" onclick="script_noticias.modal_eliminar(event)" data-id="'.$item->id.'" title="Eliminar noticia" data-url="'.route('noticias.eliminar').'"><ion-icon name="trash"></ion-icon></a>';
+                })
+                ->rawColumns(['action'])
+                ->setRowId('orden')
+                ->make(true);
+
+        } else {
+            $fuentes = Fuente::obtenerFuentesBuscador();
+            $municipios = Municipio::obtenerMunicipiosBuscador();
+            $provincias = Provincia::obtenerProvinciasBuscador();
+            $bienes = BienInteresCultural::obtenerBienesBuscador();
+            return view('noticias.index', [
+                'fuentes_buscador' => $fuentes,
+                'municipios_buscador' => $municipios,
+                'provincias_buscador' => $provincias,
+                'bienes_buscador' => $bienes
+            ]);
+        }
+    }
+
+    public function ver($id) {
+        $noticia = Noticia::findOrFail($id);
+
+        return view('noticias.ver', [
+            'noticia' => $noticia
+        ]);
+    }
+
 }

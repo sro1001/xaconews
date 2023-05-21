@@ -50,4 +50,13 @@ class Municipio extends Model
 	{
 		return $this->hasMany(Localidad::class);
 	}
+
+	public static function obtenerMunicipiosBuscador(){
+		$municipios = Municipio::orderBy('nombre')->get();
+		$array_municipios_buscador = array();
+		foreach($municipios as $municipio){
+			$array_municipios_buscador[$municipio->id] = $municipio->nombre;
+		}
+		return $array_municipios_buscador;
+	}
 }

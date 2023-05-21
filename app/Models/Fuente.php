@@ -59,4 +59,13 @@ class Fuente extends Model
 	public function esFuenteHttps(){
 		return str_contains($this->url,"https");
 	}
+
+	public static function obtenerFuentesBuscador(){
+		$fuentes = Fuente::orderBy('nombre')->get();
+		$array_fuentes_buscador = array();
+		foreach($fuentes as $fuente){
+			$array_fuentes_buscador[$fuente->id] = $fuente->nombre;
+		}
+		return $array_fuentes_buscador;
+	}
 }

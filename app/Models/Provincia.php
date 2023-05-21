@@ -38,4 +38,13 @@ class Provincia extends Model
 	{
 		return $this->hasMany(Municipio::class);
 	}
+
+	public static function obtenerProvinciasBuscador(){
+		$provincias = Provincia::orderBy('nombre')->get();
+		$array_provincias_buscador = array();
+		foreach($provincias as $provincia){
+			$array_provincias_buscador[$provincia->id] = $provincia->nombre;
+		}
+		return $array_provincias_buscador;
+	}
 }

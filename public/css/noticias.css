@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+.buscador {
+  background: whitesmoke;
+  border-radius: 20px;
+}
+
+.titulo-buscador {
+  margin-bottom: 0.2em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+}
+
+.titulo-listado {
+  margin-bottom: 0.2em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+}
+
+.cnt-buscador {
+  background-color: whitesmoke;
+  width: 100%;
+  display: inline-block;
+  float: left;
+  padding: 0.5rem 0 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.cnt-buscador .btn-search {
+  background-color: #1b330c;
+  color: white;
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+  margin-right: 0;
+  margin-bottom: -19px;
+  font-size: 15px;
+  background-image: url("../img/search.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding: 0.6rem 1rem 0.5rem 3rem;
+  border: 0;
+}
+
+.cnt-table1 {
+  background-color: whitesmoke;
+  padding: 8px 12px;
+}
+.cnt-table1 label {
+  margin: 0;
+}
+.cnt-table1 .tabla_footer {
+  color: #555;
+  font-size: 17px;
+  font-weight: 300;
+  margin-top: 15px;
+  float: left;
+}
+.cnt-table1 .cnt-pagination {
+  text-align: center;
+}
+.cnt-table1 .cnt-pagination ul {
+  margin: 8px 0 0 0;
+}
+.cnt-table1 .cnt-pagination ul a {
+  color: black;
+}
+.cnt-table1 ul.pagination {
+  padding-top: 25px;
+  margin-left: 1em;
+  float: right;
+}
+.cnt-table1 ul.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.cnt-table1 ul.pagination li.current {
+  background-color: #1b330c;
+}
+.cnt-table1 ul.pagination li.current a {
+  color: white;
+}
+.cnt-table1 ul.pagination li.previous {
+  background-color: #1b330c;
+  margin-right: 1em;
+}
+.cnt-table1 ul.pagination li.previous a {
+  color: white;
+}
+.cnt-table1 ul.pagination li.next {
+  background-color: #1b330c;
+  margin-left: 1em;
+}
+.cnt-table1 ul.pagination li.next a {
+  color: white;
+}
+
+table.tabla1 {
+  border: none !important;
+}
+table.tabla1 * {
+  border: none !important;
+}
+table.tabla1 input[type=text], table.tabla1 select {
+  margin-bottom: 0;
+}
+table.tabla1 button.button {
+  font-size: 14px;
+}
+table.tabla1 thead tr {
+  background-color: #fff;
+}
+table.tabla1 thead tr th {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+table.tabla1 tbody tr td {
+  background-color: #ededed;
+  font-size: 13px;
+  color: #3e3e3e;
+}
+table.tabla1 tbody tr:nth-child(2n) td {
+  background-color: #fff;
+}
+
+.elemento-buscador {
+  display: inline-block;
+}
