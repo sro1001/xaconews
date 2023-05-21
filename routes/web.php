@@ -23,15 +23,21 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('password/sendReset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@resetPassword')->name('password.reset');
 Route::post('password/update', 'Auth\ResetPasswordController@updatePassword');
 
 
-Route::group(['prefix' => 'noticias', 'as' => 'noticias.'], function () {
-    Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizar_noticias')->name('sincronizar_noticias');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::group(['prefix' => 'noticias', 'as' => 'noticias.'], function () {
+        Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizar_noticias')->name('sincronizar_noticias');
+        Route::get('index', 'Noticias\NoticiasController@index')->name('index');
+        Route::get('ver/{id}', 'Noticias\NoticiasController@ver')->name('ver');
+        Route::put('actualizar/{id}', 'Noticias\NoticiasController@actualizar')->name('actualizar');
+        Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
+    });
 });
 
