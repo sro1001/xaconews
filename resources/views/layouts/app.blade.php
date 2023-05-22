@@ -21,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noticias.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url('img/favicon.ico') }}">
 </head>
 <body>
     <div id="app" style="background-image: url('{{ asset('img/xacoNewsLogin2.jpg')}}');    background-attachment: fixed;
