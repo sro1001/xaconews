@@ -24,10 +24,14 @@
                 language: {
                     "info": "Mostrando de _START_ a _END_ en un total de _TOTAL_ noticias",
                     "paginate": {
-                        "next":       "Siguiente",
-                        "previous":   "Anterior"
+                        "next": "Siguiente",
+                        "previous": "Anterior"
                     },
-                    "processing": "Cargando...",
+                    "processing":   "<span style='color:#1b330c' class='fa-stack fa-lg'>\n\
+                                        <i class='fa fa-spinner fa-spin fa-stack-2x fa-fw'></i>\n\
+                                    </span>&emsp;Cargando...",
+                    "zeroRecords": "Sin resultados",
+                    "infoEmpty": "Mostrando 0 noticias",
                 },
                 order: [[0, 'asc']],
                 ajax: {
@@ -58,6 +62,10 @@
 
         return {
             init: function() {
+
+                $(document).on('click', '.paginate_button', function () {
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                });
 
                 //Buscador
                 jQuery('#buscar').click(function() {
