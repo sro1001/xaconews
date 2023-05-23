@@ -68,7 +68,6 @@
   color: black;
 }
 .cnt-table1 ul.pagination {
-  padding-top: 25px;
   margin-left: 1em;
   float: right;
 }
@@ -130,4 +129,25 @@ table.tabla1 tbody tr:nth-child(2n) td {
 
 .elemento-buscador {
   display: inline-block;
+}
+
+.columns:has(.dataTables_info) {
+  width: 40%;
+  margin-left: 1rem;
+}
+
+.columns:has(.dataTables_paginate) {
+  width: 55%;
+  margin-right: 1rem;
+  float: right;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  display: none;
+}
+
+#tabla_ellipsis {
+  display: block !important;
 }
