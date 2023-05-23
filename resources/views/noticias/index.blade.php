@@ -27,12 +27,12 @@
                             {!! Form::label('provincia_id', 'Provincia') !!}
                             {!! Form::select('provincia_id', $provincias_buscador, null, array('class' => 'form-control select2', 'id' => 'provincia_id', 'placeholder' => '** Todas las provincias **')) !!}
                         </div>
-                        <div class="col-md-3 elemento-buscador">
+                    </div>
+                    <div class="d-inline-block" style="width: 100%;margin-top:1em;">
+                        <div class="col-md-5 elemento-buscador">
                             {!! Form::label('bien_cultural_id', 'Bienes de interés cultural') !!}
                             {!! Form::select('bien_cultural_id', $bienes_buscador, null, array('class' => 'form-control select2', 'id' => 'bien_cultural_id', 'placeholder' => '** Todos las bienes **')) !!}
                         </div>
-
-
                         <button class="button btn-search" id="buscar">Buscar</button>
                     </div>
                 </div>

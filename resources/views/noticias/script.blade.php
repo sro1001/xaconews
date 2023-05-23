@@ -12,15 +12,23 @@
          */
         let cargar_datatable = function() {
             datatable_tipos_lista = jQuery('#tabla').DataTable({
-                ordering: true,
+                ordering: false,
                 fixedColumns: false,
-                info: false,
+                info: true,
                 autoWidth: false,
                 stateSave: false,
                 lengthChange: false,
                 searching: false,
                 processing: true,
                 serverSide: true,
+                language: {
+                    "info": "Mostrando de _START_ a _END_ en un total de _TOTAL_ noticias",
+                    "paginate": {
+                        "next":       "Siguiente",
+                        "previous":   "Anterior"
+                    },
+                    "processing": "Cargando...",
+                },
                 order: [[0, 'asc']],
                 ajax: {
                     url: '{{ URL::current() }}',
