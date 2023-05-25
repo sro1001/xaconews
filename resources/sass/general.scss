@@ -8,6 +8,9 @@
     font-size: 25px;
     font-weight: bold;
     color: #1b330c;
+    background: rgb(169, 169, 169,0.4);
+    width: 15%;
+    text-align-last: center;
 }
 
 .titulo-listado{
@@ -15,6 +18,9 @@
     font-size: 25px;
     font-weight: bold;
     color: #1b330c;
+    background: rgb(169, 169, 169,0.4);
+    width: 25%;
+    text-align-last: center;
 }
 
 .cnt-buscador{
@@ -233,4 +239,20 @@ table.tabla1
   font-size: 25px;
   font-weight: bold;
   color: #1b330c;
+}
+
+.fondo-titulo-noticia{
+  background: rgb(169, 169, 169,0.4);
+  width: 22%;
+  text-align-last: center;
+}
+
+.titulo-noticia{
+  margin-bottom: 0.2em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+  background: rgb(169, 169, 169,0.4);
+  width: 25%;
+  text-align-last: center;
 }

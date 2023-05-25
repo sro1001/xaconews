@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="titulo-buscador">
+                <div class="titulo-noticia">
                     Revisión de la noticia
                 </div>
                 {!! Form::model($noticia ,array('route' => ['noticias.revision', $noticia->id], 'method' => 'PUT', 'role' => 'form', 'class' => 'form-horizontal', 'id' => 'formulario')) !!}
@@ -37,7 +37,7 @@
             <div class="col-md-12">
                 @if($edicion_texto)
                     <div class="edicion-noticia">
-                        {!! Form::label('texto', 'Texto de la noticia') !!}
+                        {!! Form::label('texto', 'Texto de la noticia', array('class' => 'fondo-titulo-noticia')) !!}
                         {!! Form::textarea('texto', null, array('style'=>'height:auto;','class' => 'form-control'.(($errors->has('nombre')) ? ' is-invalid-input' : ''), 'id' => 'texto')) !!}
                     </div>
                 @else
