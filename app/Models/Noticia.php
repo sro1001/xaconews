@@ -60,4 +60,10 @@ class Noticia extends Model
 	{
 		return $this->belongsTo(Fuente::class);
 	}
+
+	public function formatearTexto()
+	{
+		$lineas_noticia = preg_split('/\r\n|\r|\n/', $this->texto);
+		return array_filter($lineas_noticia);
+	}
 }

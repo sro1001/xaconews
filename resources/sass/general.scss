@@ -177,3 +177,60 @@ table.tabla1
 #tabla_ellipsis{
    display: block !important;
 }
+
+.info-noticia{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 14em;
+    padding: 1rem 0 1rem;
+    font-size: 16px;
+}
+
+.contenido-noticia{
+  background-color: whitesmoke;
+  margin-top: 3em;
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 2em 1em;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.linea-noticia{
+  font-family: "Times New Roman", Times, serif;
+  margin-top:1em;
+  font-size:1.1em;
+  border-left: solid;
+}
+
+.btn-save{
+  float: right;
+  padding: 1em 3em 1em 3em !important;
+}
+
+.btn-back{
+  float: left;
+  padding: 1em 3em 1em 3em !important;
+}
+
+.btn-editar-noticia{
+  position: absolute;
+  right: 2rem;
+  margin-top: 1.5rem;
+  font-size: 16px;
+  padding: 0.6rem 1rem 0.5rem 1rem;
+}
+
+.titulo-edicion{
+  margin-bottom: 0.2em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+}
+
+.edicion-noticia{
+  margin-top: 1em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+}

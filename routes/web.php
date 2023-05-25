@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizar_noticias')->name('sincronizar_noticias');
         Route::get('index', 'Noticias\NoticiasController@index')->name('index');
         Route::get('ver/{id}', 'Noticias\NoticiasController@ver')->name('ver');
-        Route::put('actualizar/{id}', 'Noticias\NoticiasController@actualizar')->name('actualizar');
+        Route::put('revision/{id}', 'Noticias\NoticiasController@revision')->name('revision');
+        Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editar_texto_noticia')->name('editar_texto_noticia');
         Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
     });
 });

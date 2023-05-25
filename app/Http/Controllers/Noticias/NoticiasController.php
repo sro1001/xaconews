@@ -165,7 +165,31 @@ class NoticiasController extends Controller
         $noticia = Noticia::findOrFail($id);
 
         return view('noticias.ver', [
-            'noticia' => $noticia
+            'noticia' => $noticia,
+            'edicion_texto' => false
+        ]);
+    }
+
+
+    public function revision($noticia_id, Request $request) {
+        $noticia = Noticia::findOrFail($noticia_id);
+        if(isset($request->texto)){
+            $noticia->texto = $request->texto;
+        }
+        $noticia->save();
+        if($request->has('editar_texto')){
+            return redirect()->route('noticias.editar_texto_noticia',$noticia_id);
+        }else{
+            return redirect()->route('noticias.index');
+        }
+    }
+
+    public function editar_texto_noticia($id){
+        $noticia = Noticia::findOrFail($id);
+
+        return view('noticias.ver', [
+            'noticia' => $noticia,
+            'edicion_texto' => true
         ]);
     }
 

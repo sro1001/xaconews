@@ -2723,15 +2723,15 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  color: #1b330c;
+  background-color: whitesmoke;
+  border-color: #1b330c;
 }
 
 .btn-secondary:hover {
-  color: #fff;
-  background-color: #5a6268;
-  border-color: #545b62;
+  color: whitesmoke;
+  background-color: #79c345;;
+  border-color: #79c345;;
 }
 
 .btn-secondary:focus,
