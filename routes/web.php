@@ -40,5 +40,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editar_texto_noticia')->name('editar_texto_noticia');
         Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
     });
+
+    Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
+        Route::get('index', 'Noticias\UsuariosNoticiasController@index')->name('index');
+        Route::get('crear', 'Noticias\UsuariosNoticiasController@crear')->name('crear');
+        Route::post('insertar', 'Noticias\UsuariosNoticiasController@insertar')->name('insertar');
+        Route::get('editar/{id}', 'Noticias\UsuariosNoticiasController@editar')->name('editar');
+        Route::put('actualizar/{id}', 'Noticias\UsuariosNoticiasController@actualizar')->name('actualizar');
+        Route::put('cambiar_estado', 'Noticias\UsuariosNoticiasController@cambiar_estado')->name('cambiar_estado');
+    });
 });
 

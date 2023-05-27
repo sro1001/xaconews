@@ -135,10 +135,6 @@ table.tabla1 tbody tr:nth-child(2n) td {
   background-color: #fff;
 }
 
-.elemento-buscador {
-  display: inline-block;
-}
-
 .columns:has(.dataTables_info) {
   width: 40%;
   margin-left: 1rem;
@@ -231,6 +227,39 @@ table.tabla1 tbody tr:nth-child(2n) td {
   color: #1b330c;
   background: rgba(169, 169, 169, 0.4);
   width: 25%;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+
+.form-background {
+  background-color: whitesmoke;
+  width: 100%;
+  height: auto;
+  padding: 1rem 0 1rem;
+  font-size: 16px;
+}
+
+.titulo-edicion {
+  margin-bottom: 0.2em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+  background: rgba(169, 169, 169, 0.4);
+  width: 20%;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+
+.btn-crear {
+  position: absolute;
+  right: 1.9rem;
+  margin-top: 0.4em;
+  font-size: 16px;
+  padding: 0.6rem 1rem 0.5rem 1rem;
+  z-index: 1;
+}
+
+.swal-footer {
   -moz-text-align-last: center;
        text-align-last: center;
 }

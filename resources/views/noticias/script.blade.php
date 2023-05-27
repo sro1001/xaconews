@@ -5,13 +5,13 @@
      * Bloque funcional para gestionar noticias.
      */
     let script_noticias = function() {
-        let datatable_tipos_lista;
+        let datatable_noticias;
 
         /**
          * Cargar datatable con todas las subsecciones existentes.
          */
         let cargar_datatable = function() {
-            datatable_tipos_lista = jQuery('#tabla').DataTable({
+            datatable_noticias = jQuery('#tabla').DataTable({
                 ordering: false,
                 fixedColumns: false,
                 info: true,
@@ -69,7 +69,7 @@
 
                 //Buscador
                 jQuery('#buscar').click(function() {
-                    datatable_tipos_lista.ajax.reload();
+                    datatable_noticias.ajax.reload();
                 });
                 
                 cargar_datatable();

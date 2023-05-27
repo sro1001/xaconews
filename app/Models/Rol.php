@@ -36,4 +36,13 @@ class Rol extends Model
 	{
 		return $this->hasMany(Usuario::class, 'rol_id');
 	}
+
+	public static function obtenerRolesBuscador(){
+		$roles = Rol::orderBy('nombre')->get();
+		$array_roles_buscador = array();
+		foreach($roles as $rol){
+			$array_roles_buscador[$rol->id] = $rol->nombre;
+		}
+		return $array_roles_buscador;
+	}
 }
