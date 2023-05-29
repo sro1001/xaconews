@@ -159,7 +159,7 @@ table.tabla1 tbody tr:nth-child(2n) td {
 .info-noticia {
   background-color: whitesmoke;
   width: 100%;
-  height: 14em;
+  height: 19em;
   padding: 1rem 0 1rem;
   font-size: 16px;
 }
@@ -262,4 +262,8 @@ table.tabla1 tbody tr:nth-child(2n) td {
 .swal-footer {
   -moz-text-align-last: center;
        text-align-last: center;
+}
+
+.col-end {
+  max-width: 22% !important;
 }

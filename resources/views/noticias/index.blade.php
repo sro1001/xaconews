@@ -21,17 +21,21 @@
                         </div>
                         <div class="col-md-3 d-inline-block">
                             {!! Form::label('municipio_id', 'Municipio') !!}
-                            {!! Form::select('municipio_id', $municipios_buscador, null, array('class' => 'form-control select2', 'id' => 'municipio_id', 'placeholder' => '** Todos las municipios **')) !!}
+                            {!! Form::select('municipio_id', $municipios_buscador, null, array('class' => 'form-control select2', 'id' => 'municipio_id', 'placeholder' => '** Todos los municipios **')) !!}
                         </div>
-                        <div class="col-md-2 d-inline-block">
+                        <div class="col-md-2 d-inline-block col-end">
                             {!! Form::label('provincia_id', 'Provincia') !!}
                             {!! Form::select('provincia_id', $provincias_buscador, null, array('class' => 'form-control select2', 'id' => 'provincia_id', 'placeholder' => '** Todas las provincias **')) !!}
                         </div>
                     </div>
                     <div style="width: 100%; margin-top:1em;">
-                        <div class="col-md-5">
+                        <div class="col-md-6 d-inline-block">
                             {!! Form::label('bien_cultural_id', 'Bienes de interés cultural') !!}
                             {!! Form::select('bien_cultural_id', $bienes_buscador, null, array('class' => 'form-control select2', 'id' => 'bien_cultural_id', 'placeholder' => '** Todos las bienes **')) !!}
+                        </div>
+                        <div class="col-md-3 d-inline-block">
+                            {!! Form::label('estado_id', 'Estado') !!}
+                            {!! Form::select('estado_id', $estados_buscador, null, array('class' => 'form-control select2', 'id' => 'estado_id', 'placeholder' => '** Todos los estados **')) !!}
                         </div>
                         <button class="button btn-search" id="buscar">Buscar</button>
                     </div>
@@ -54,6 +58,7 @@
                             <th>Bien cultural</th>
                             <th>Municipio</th>
                             <th>Provincia</th>
+                            <th>Estado</th>
                             <th width="160px">Acciones</th>
                         </tr>
                         </thead>

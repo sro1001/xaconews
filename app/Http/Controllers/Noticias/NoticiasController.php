@@ -12,6 +12,7 @@ use App\Models\Fuente;
 use App\Models\Rol;
 use App\Models\Municipio;
 use App\Models\Provincia;
+use App\Models\NoticiaEstado;
 use Carbon\Carbon;
 use \Datetime;
 use Yajra\DataTables\DataTables;
@@ -138,12 +139,22 @@ class NoticiasController extends Controller
                 ->addColumn('fuente', function ($item) use (&$request) {
                     return $item->fuente->nombre;
                 })
+                ->addColumn('estado', function ($item) use (&$request) {
+                    switch($item->estado_id){
+                        case NoticiaEstado::SIN_REVISAR:
+                            return '<div style="color: #E79500; font-weight: bold">Sin revisar</div>';
+                        case NoticiaEstado::VISIBLE:
+                            return '<div style="color: green; font-weight: bold">Visible</div>';
+                        case NoticiaEstado::OCULTO:
+                            return '<div style="color: red; font-weight: bold">Oculto</div>';
+                    }
+                })
                 ->addColumn('action', function ($item) use (&$request) {
                     return '<a href="'.route('noticias.ver', $item->id).'" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
                         <a href="'.$item->url.'" class="btn btn-xs btn-primary" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;
                         <a class="btn btn-xs btn-primary" onclick="script_noticias.modal_eliminar(event)" data-id="'.$item->id.'" title="Eliminar noticia" data-url="'.route('noticias.eliminar').'"><ion-icon name="trash"></ion-icon></a>';
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','estado'])
                 ->setRowId('orden')
                 ->make(true);
 
@@ -152,20 +163,24 @@ class NoticiasController extends Controller
             $municipios = Municipio::obtenerMunicipiosBuscador();
             $provincias = Provincia::obtenerProvinciasBuscador();
             $bienes = BienInteresCultural::obtenerBienesBuscador();
+            $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador();
             return view('noticias.index', [
                 'fuentes_buscador' => $fuentes,
                 'municipios_buscador' => $municipios,
                 'provincias_buscador' => $provincias,
-                'bienes_buscador' => $bienes
+                'bienes_buscador' => $bienes,
+                'estados_buscador' => $noticias_estados
             ]);
         }
     }
 
     public function ver($id) {
         $noticia = Noticia::findOrFail($id);
+        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador();
 
         return view('noticias.ver', [
             'noticia' => $noticia,
+            'noticias_estados' => $noticias_estados,
             'edicion_texto' => false
         ]);
     }
@@ -173,6 +188,7 @@ class NoticiasController extends Controller
 
     public function revision($noticia_id, Request $request) {
         $noticia = Noticia::findOrFail($noticia_id);
+        $noticia->estado_id = $request->estado_id;
         if(isset($request->texto)){
             $noticia->texto = $request->texto;
         }
@@ -186,9 +202,11 @@ class NoticiasController extends Controller
 
     public function editar_texto_noticia($id){
         $noticia = Noticia::findOrFail($id);
+        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador();
 
         return view('noticias.ver', [
             'noticia' => $noticia,
+            'noticias_estados' => $noticias_estados,
             'edicion_texto' => true
         ]);
     }

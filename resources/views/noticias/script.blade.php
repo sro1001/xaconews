@@ -42,6 +42,7 @@
                         d.bien_cultural_id = $('select[name=bien_cultural_id]').val();
                         d.municipio_id = $('select[name=municipio_id]').val();
                         d.provincia_id = $('select[name=provincia_id]').val();
+                        d.estado_id = $('select[name=estado_id]').val();
                     }
                 },
                 columns: [
@@ -50,6 +51,7 @@
                     {data: "bien_cultural", name: "bien_cultural", className: ""},
                     {data: "municipio", name: "municipio", className: ""},
                     {data: "provincia", name: "provincia", className: ""},
+                    {data: "estado", name: "estado", className: ""},
                     {data: 'action', name: 'action', orderable: false, searchable: false, className: "ta-center"}
                 ]
             });

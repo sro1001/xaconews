@@ -32,6 +32,10 @@
                     <div class="col-md-12 link-noticia">
                         <b>Noticia original:</b>&nbsp;&nbsp;<a href="{{$noticia->url}}" class="btn btn-xs btn-primary" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>
                     </div>
+                    <div class="col-md-4">
+                        {!! Form::label('estado_id', 'Estado de la noticia', array('style' => 'font-weight:bold;')) !!}
+                        {!! Form::select('estado_id', $noticias_estados, null, array('class' => 'form-control'.(($errors->has('estado_id')) ? ' is-invalid-input' : ''), 'id' => 'estado_id')) !!}
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
@@ -53,9 +57,7 @@
             </div>
             <div class="col-md-12" style="margin-top:1em;">
                 <a href="{{route('noticias.index')}}" class="btn btn-secondary btn-back">Atrás</a>
-                @if($edicion_texto)
-                    <button class="btn btn-primary btn-save" type="submit">Guardar</button>
-                @endif
+                <button class="btn btn-primary btn-save" type="submit">Guardar</button>
             </div>
         </div>
             {!! Form::close() !!}

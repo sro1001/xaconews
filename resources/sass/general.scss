@@ -183,7 +183,7 @@ table.tabla1
 .info-noticia{
     background-color: whitesmoke;
     width: 100%;
-    height: 14em;
+    height: 19em;
     padding: 1rem 0 1rem;
     font-size: 16px;
 }
@@ -282,4 +282,8 @@ table.tabla1
 
 .swal-footer{
   text-align-last: center;
+}
+
+.col-end{
+  max-width: 22% !important;
 }
