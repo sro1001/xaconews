@@ -64,7 +64,14 @@ class BienInteresCultural extends Model
 		$nombre_bien_cultural_separado = explode(" ",$nombre_bien_cultural_limpio);
 		$municipio_separado = explode(" ",$this->municipio->nombre);
 		$cadenaGn = array_merge($nombre_bien_cultural_separado, $municipio_separado);
-		return implode("+",$cadenaGn);
+		$cadenaFormatoGn = implode("+",$cadenaGn);
+		// 29/05 Anidamos el texto de camino de santiago para tener resultados más precisos
+		if(str_contains($cadenaFormatoGn, 'Camino')){
+			$cadenaFormatoGn = $cadenaFormatoGn.'+De+Santiago';
+		}else{
+			$cadenaFormatoGn = $cadenaFormatoGn.'Camino+De+Santiago';
+		}
+		return $cadenaFormatoGn;
 	}
 
 	public static function obtenerIdsBienesPorMunicipio($municipio_id){

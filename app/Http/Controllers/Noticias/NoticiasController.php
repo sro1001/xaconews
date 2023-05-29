@@ -35,7 +35,7 @@ class NoticiasController extends Controller
             //$urls_buenas = $data_xml->channel->item->getNamespaces();
             foreach($data_xml->channel->item as $noticia){
                 $fecha_noticia = date_create_from_format(DateTime::RSS, $noticia->pubDate);
-                if($fecha_noticia->format('Y-m-d') > Carbon::yesterday()->format('Y-m-d')){
+                if($fecha_noticia->format('Y-m-d') > Carbon::now()->subMonth()->format('Y-m-d')){
                     $count_noticias += 1;
                     $sincro_noticias_control = SincronizacionNoticias::all()[0];
                     $limite_llamadas_api = $sincro_noticias_control->limite_llamadas_api_noticias;
@@ -49,6 +49,7 @@ class NoticiasController extends Controller
                         $nueva_noticia->fuente_id = $fuente->id;
                         $nueva_noticia->titulo = str_replace('"','',$fuente->limpiarFuenteEnTitulo($noticia->title));
                         $nueva_noticia->fecha = date_create_from_format(DateTime::RSS, $noticia->pubDate);
+                        $nueva_noticia->estado_id = NoticiaEstado::SIN_REVISAR;
                         $llamada_gn_link = curl_init();
                         curl_setopt($llamada_gn_link, CURLOPT_URL, $noticia->link);
                         curl_setopt($llamada_gn_link, CURLOPT_HEADER, TRUE);
