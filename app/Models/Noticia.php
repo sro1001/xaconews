@@ -61,6 +61,11 @@ class Noticia extends Model
 		return $this->belongsTo(Fuente::class);
 	}
 
+	public function estado()
+	{
+		return $this->belongsTo(NoticiaEstado::class);
+	}
+
 	public function formatearTexto()
 	{
 		$lineas_noticia = preg_split('/\r\n|\r|\n/', $this->texto);
