@@ -47,6 +47,7 @@
                 },
                 columns: [
                     {data: "titulo", name: "titulo", className: ""},
+                    {data: "fecha_listado", name: "fecha_listado", className: ""},
                     {data: "fuente", name: "fuente", className: ""},
                     {data: "bien_cultural", name: "bien_cultural", className: ""},
                     {data: "municipio", name: "municipio", className: ""},

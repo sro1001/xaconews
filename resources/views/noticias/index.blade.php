@@ -54,6 +54,7 @@
                         <thead>
                         <tr>
                             <th>Título</th>
+                            <th>Fecha</th>
                             <th>Fuente</th>
                             <th>Bien cultural</th>
                             <th>Municipio</th>

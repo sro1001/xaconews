@@ -126,7 +126,7 @@ class NoticiasController extends Controller
                 $noticias = $noticias->whereIn('bien_interes_cultural_id',$bienes_ids);
             }
 
-            return Datatables::of($noticias->get())
+            return Datatables::of($noticias->orderBy('fecha','desc')->get())
                 ->addColumn('bien_cultural', function ($item) use (&$request) {
                     return $item->bien_interes_cultural->nombre;
                 })
@@ -148,6 +148,9 @@ class NoticiasController extends Controller
                         case NoticiaEstado::OCULTO:
                             return '<div style="color: red; font-weight: bold">Oculto</div>';
                     }
+                })
+                ->addColumn('fecha_listado', function ($item) use (&$request) {
+                    return $item->fecha->format('d/m/Y');
                 })
                 ->addColumn('action', function ($item) use (&$request) {
                     return '<a href="'.route('noticias.ver', $item->id).'" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
@@ -190,6 +193,7 @@ class NoticiasController extends Controller
         $noticia = Noticia::findOrFail($noticia_id);
         $noticia->estado_id = $request->estado_id;
         if(isset($request->texto)){
+            $noticia->titulo = $request->titulo;
             $noticia->texto = $request->texto;
         }
         $noticia->save();

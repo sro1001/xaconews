@@ -10,10 +10,17 @@
                 {!! Form::model($noticia ,array('route' => ['noticias.revision', $noticia->id], 'method' => 'PUT', 'role' => 'form', 'class' => 'form-horizontal', 'id' => 'formulario')) !!}
             </div>
             <div class="col-md-12">
-                <div class="info-noticia">
-                    <div class="col-md-12">
-                        <b>Título:</b> {{$noticia->titulo}}
-                    </div>
+                @if($edicion_texto)
+                    <div class="info-noticia edit-noticia">
+                        <div class="col-md-12">
+                            <b>Título:</b> {!! Form::text('titulo', null, array('style'=>'height:auto;margin-bottom: 0.4em;','class' => 'form-control'.(($errors->has('titulo')) ? ' is-invalid-input' : ''), 'id' => 'titulo')) !!}
+                        </div>
+                @else
+                    <div class="info-noticia">
+                        <div class="col-md-12">
+                            <b>Título:</b> {{$noticia->titulo}}
+                        </div>
+                @endif
                     <div class="col-md-12">
                         <b>Fuente:</b> {{$noticia->fuente->nombre}}
                     </div>
@@ -41,7 +48,7 @@
             <div class="col-md-12">
                 @if($edicion_texto)
                     <div class="edicion-noticia">
-                        {!! Form::label('texto', 'Texto de la noticia', array('class' => 'fondo-titulo-noticia')) !!}
+                        {!! Form::label('texto', 'Texto de la noticia', array('class' => 'fondo-titulo-noticia','style' => 'font-weight:bold;')) !!}
                         {!! Form::textarea('texto', null, array('style'=>'height:auto;','class' => 'form-control'.(($errors->has('nombre')) ? ' is-invalid-input' : ''), 'id' => 'texto')) !!}
                     </div>
                 @else
