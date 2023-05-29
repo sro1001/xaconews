@@ -267,3 +267,7 @@ table.tabla1 tbody tr:nth-child(2n) td {
 .col-end {
   max-width: 22% !important;
 }
+
+.menu-right {
+  margin-right: 2%;
+}

@@ -39,10 +39,21 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav menu-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                        </li>
                     </ul>
-
+                    <ul class="navbar-nav menu-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('noticias.index') }}">Noticias</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav menu-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
+                        </li>
+                    </ul>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
