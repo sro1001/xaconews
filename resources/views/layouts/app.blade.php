@@ -39,21 +39,25 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav menu-right">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav menu-right">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('noticias.index') }}">Noticias</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav menu-right">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
-                        </li>
-                    </ul>
+                    @if(isset(Auth::user()->rol_id) && Auth::user()->rol_id != App\Models\Rol::LECTOR)
+                        <ul class="navbar-nav menu-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav menu-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('noticias.index') }}">Noticias</a>
+                            </li>
+                        </ul>
+                        @if(Auth::user()->rol_id != App\Models\Rol::EDITOR)
+                            <ul class="navbar-nav menu-right">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
+                                </li>
+                            </ul>
+                        @endif
+                    @endif
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -69,7 +73,7 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nombre_completo }} <span class="caret"></span>
+                                    {{ Auth::user()->nombre_completo }} - {{App\Models\Rol::obtenerTextoRol(Auth::user()->rol_id)}} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

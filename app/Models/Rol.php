@@ -45,4 +45,9 @@ class Rol extends Model
 		}
 		return $array_roles_buscador;
 	}
+
+	public static function obtenerTextoRol($rol_id){
+		$rol = Rol::find($rol_id);
+		return $rol->nombre;
+	}
 }
