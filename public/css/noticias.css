@@ -214,7 +214,7 @@ table.tabla1 tbody tr:nth-child(2n) td {
 }
 
 .fondo-titulo-noticia {
-  background: rgba(169, 169, 169, 0.4);
+  background: rgba(169, 169, 169, 0.5);
   width: 22%;
   -moz-text-align-last: center;
        text-align-last: center;

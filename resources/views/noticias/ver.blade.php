@@ -48,7 +48,7 @@
             <div class="col-md-12">
                 @if($edicion_texto)
                     <div class="edicion-noticia">
-                        {!! Form::label('texto', 'Texto de la noticia', array('class' => 'fondo-titulo-noticia','style' => 'font-weight:bold;')) !!}
+                        {!! Form::label('texto', 'Texto de la noticia', array('class' => 'fondo-titulo-noticia')) !!}
                         {!! Form::textarea('texto', null, array('style'=>'height:auto;','class' => 'form-control'.(($errors->has('nombre')) ? ' is-invalid-input' : ''), 'id' => 'texto')) !!}
                     </div>
                 @else
