@@ -126,6 +126,9 @@ class NoticiasController extends Controller
                 $bienes_ids = BienInteresCultural::obtenerIdsBienesPorProvincia($request->get('provincia_id'));
                 $noticias = $noticias->whereIn('bien_interes_cultural_id',$bienes_ids);
             }
+            if(filled($request->get('estado_id'))){
+                $noticias = $noticias->where('estado_id', '=', $request->get('estado_id'));
+            }
 
             return Datatables::of($noticias->orderBy('fecha','desc')->get())
                 ->addColumn('bien_cultural', function ($item) use (&$request) {
