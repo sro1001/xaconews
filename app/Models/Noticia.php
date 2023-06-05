@@ -20,11 +20,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $fecha
  * @property string|null $texto
  * @property string $google_news_id
+ * @property int $estado_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
- * @property BienInteresCultural $bienes_interes_cultural
+ * @property BienesInteresCultural $bienes_interes_cultural
  * @property Fuente $fuente
+ * @property NoticiaEstado $estado
+ * @property Collection|Sentimiento[] $sentimientos
  *
  * @package App\Models
  */
@@ -34,7 +37,8 @@ class Noticia extends Model
 
 	protected $casts = [
 		'bien_interes_cultural_id' => 'int',
-		'fuente_id' => 'int'
+		'fuente_id' => 'int',
+		'estado_id' => 'int'
 	];
 
 	protected $dates = [
@@ -48,7 +52,8 @@ class Noticia extends Model
 		'fuente_id',
 		'fecha',
 		'texto',
-		'google_news_id'
+		'google_news_id',
+		'estado_id'
 	];
 
 	public function bien_interes_cultural()

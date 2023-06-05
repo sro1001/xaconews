@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * Class BienInteresCultural
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Localidad $localidad
  * @property Municipio $municipio
  * @property Provincia $provincia
+ * @property Collection|Noticia[] $noticias
  *
  * @package App\Models
  */
@@ -56,6 +58,11 @@ class BienInteresCultural extends Model
 	public function provincia()
 	{
 		return $this->belongsTo(Provincia::class);
+	}
+
+	public function noticias()
+	{
+		return $this->hasMany(Noticia::class, 'bien_interes_cultural_id');
 	}
 
 	public function obtenerCadenaFormatoGn(){
