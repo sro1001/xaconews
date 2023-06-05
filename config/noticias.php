@@ -18,6 +18,6 @@ return [
         'CONTENT_PARAMETER' => 'text0'
     ],
     'CHATGPT' => [
-        'QUESTION' => 'Can you delete the Html content in this text?'
+        'QUESTION' => '¿Me puedes dar en un array, el nombre de los sentimientos que se perciben en este texto, junto con una puntuación, y una variable si es un sentimiento negativo o positivo?'
     ]
 ];

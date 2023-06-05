@@ -49,5 +49,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::put('actualizar/{id}', 'Noticias\UsuariosNoticiasController@actualizar')->name('actualizar');
         Route::put('cambiar_estado', 'Noticias\UsuariosNoticiasController@cambiar_estado')->name('cambiar_estado');
     });
+
+    Route::group(['prefix' => 'sentimientos', 'as' => 'sentimientos.'], function () {
+        Route::get('index', 'Noticias\AnalisisNoticiasController@index')->name('index');
+        Route::get('analisis_sentimientos/{id}', 'Noticias\AnalisisNoticiasController@analisis_sentimientos')->name('analisis_sentimientos');
+    });
 });
 

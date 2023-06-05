@@ -56,6 +56,11 @@
                                     <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
                                 </li>
                             </ul>
+                            <ul class="navbar-nav menu-right">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('sentimientos.index') }}">Análisis de sentimientos</a>
+                                </li>
+                            </ul>
                         @endif
                     @endif
                     <!-- Right Side Of Navbar -->

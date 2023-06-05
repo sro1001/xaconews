@@ -24,5 +24,9 @@ class EstadosNoticiasSeeder extends Seeder
             'id' => 3,
             'nombre' => 'Oculto',
         ]);
+        DB::table('noticias_estados')->insert([
+            'id' => 4,
+            'nombre' => 'Visible y analizada',
+        ]);
     }
 }

@@ -60,7 +60,7 @@
                             <th>Municipio</th>
                             <th>Provincia</th>
                             <th>Estado</th>
-                            <th width="160px">Acciones</th>
+                            <th width="150px">Acciones</th>
                         </tr>
                         </thead>
                     </table>

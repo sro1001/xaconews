@@ -151,15 +151,16 @@ class NoticiasController extends Controller
                             return '<div style="color: green; font-weight: bold">Visible</div>';
                         case NoticiaEstado::OCULTO:
                             return '<div style="color: red; font-weight: bold">Oculto</div>';
+                        case NoticiaEstado::VISIBLE_ANALIZADA:
+                            return '<div style="color: purple; font-weight: bold">Visible y analizada</div>';
                     }
                 })
                 ->addColumn('fecha_listado', function ($item) use (&$request) {
                     return $item->fecha->format('d/m/Y');
                 })
                 ->addColumn('action', function ($item) use (&$request) {
-                    return '<a href="'.route('noticias.ver', $item->id).'" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
-                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;
-                        <a class="btn btn-xs btn-primary" onclick="script_noticias.modal_eliminar(event)" data-id="'.$item->id.'" title="Eliminar noticia" data-url="'.route('noticias.eliminar').'"><ion-icon name="trash"></ion-icon></a>';
+                    return '<a href="'.route('noticias.ver', $item->id).'" title="Ver noticia" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
+                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" title="Ir a noticia" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;'.(($item->estado_id == NoticiaEstado::VISIBLE) ? '<a href="'.route('sentimientos.analisis_sentimientos', $item->id).'" title="Analizar noticia" class="btn btn-xs btn-primary"><ion-icon name="bar-chart"></ion-icon></a>&nbsp;' : '');
                 })
                 ->rawColumns(['action','estado'])
                 ->setRowId('orden')

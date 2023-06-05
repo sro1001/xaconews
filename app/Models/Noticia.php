@@ -66,6 +66,12 @@ class Noticia extends Model
 		return $this->belongsTo(NoticiaEstado::class);
 	}
 
+	public function sentimientos()
+	{
+		return $this->belongsToMany(Sentimiento::class, 'noticias_sentimientos')
+					->withPivot('id', 'puntuacion');
+	}
+
 	public function formatearTexto()
 	{
 		$lineas_noticia = preg_split('/\r\n|\r|\n/', $this->texto);

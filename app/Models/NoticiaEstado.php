@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Rol
+ * Class NoticiaEstado
  *
  * @property int $id
  * @property string $nombre
@@ -31,6 +31,7 @@ class NoticiaEstado extends Model
 	const SIN_REVISAR = 1;
     const VISIBLE = 2;
 	const OCULTO = 3;
+	const VISIBLE_ANALIZADA = 4;
 
 	public function noticias()
 	{
