@@ -196,7 +196,9 @@ class NoticiasController extends Controller
 
     public function revision($noticia_id, Request $request) {
         $noticia = Noticia::findOrFail($noticia_id);
-        $noticia->estado_id = $request->estado_id;
+        if(isset($request->estado_id)){
+            $noticia->estado_id = $request->estado_id;
+        }
         if(isset($request->texto)){
             $noticia->titulo = $request->titulo;
             $noticia->texto = $request->texto;

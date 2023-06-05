@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-12">
                 @if($edicion_texto)
-                    <div class="info-noticia edit-noticia">
+                    <div class="info-noticia">
                         <div class="col-md-12">
                             <b>Título:</b> {!! Form::text('titulo', null, array('style'=>'height:auto;margin-bottom: 0.4em;','class' => 'form-control'.(($errors->has('titulo')) ? ' is-invalid-input' : ''), 'id' => 'titulo')) !!}
                         </div>
@@ -39,10 +39,16 @@
                     <div class="col-md-12 link-noticia">
                         <b>Noticia original:</b>&nbsp;&nbsp;<a href="{{$noticia->url}}" class="btn btn-xs btn-primary" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>
                     </div>
-                    <div class="col-md-4">
-                        {!! Form::label('estado_id', 'Estado de la noticia', array('style' => 'font-weight:bold;')) !!}
-                        {!! Form::select('estado_id', $noticias_estados, null, array('class' => 'form-control'.(($errors->has('estado_id')) ? ' is-invalid-input' : ''), 'id' => 'estado_id')) !!}
-                    </div>
+                    @if($noticia->estado_id != App\Models\NoticiaEstado::VISIBLE_ANALIZADA)
+                        <div class="col-md-4">
+                            {!! Form::label('estado_id', 'Estado de la noticia', array('style' => 'font-weight:bold;')) !!}
+                            {!! Form::select('estado_id', $noticias_estados, null, array('class' => 'form-control'.(($errors->has('estado_id')) ? ' is-invalid-input' : ''), 'id' => 'estado_id')) !!}
+                        </div>
+                    @else
+                        <div class="col-md-12 link-noticia">
+                            <b>Estado de la noticia:</b> {{$noticia->estado->nombre}}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-12">
@@ -62,6 +68,38 @@
                     </div>
                 @endif
             </div>
+            @if($noticia->estado_id == App\Models\NoticiaEstado::VISIBLE_ANALIZADA)
+                <div class="col-md-12">
+                    <div class="titulo-sentimientos">
+                        Sentimientos de la noticia
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="div-tabla-sentimientos">
+                        <table class="tabla-sentimientos">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Puntuación</th>
+                                    <th>Tipo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($noticia->sentimientos as $sentimiento)
+                                    <tr>
+                                        <th>{{$sentimiento->nombre}}</th>
+                                        <th class="text-center">{{$sentimiento->pivot->puntuacion}}</th>
+                                        <th class="text-center">{{($sentimiento->positivo) ? 'Positivo' : 'Negativo'}}</th>
+                                    </tr>
+
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            @endif
             <div class="col-md-12" style="margin-top:1em;">
                 <a href="{{route('noticias.index')}}" class="btn btn-secondary btn-back">Atrás</a>
                 <button class="btn btn-primary btn-save" type="submit">Guardar</button>

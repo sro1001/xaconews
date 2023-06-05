@@ -183,7 +183,6 @@ table.tabla1
 .info-noticia{
     background-color: whitesmoke;
     width: 100%;
-    height: 19em;
     padding: 1rem 0 1rem;
     font-size: 16px;
 }
@@ -292,6 +291,49 @@ table.tabla1
   margin-right: 2%;
 }
 
-.edit-noticia{
-  height: 21em !important;
+.titulo-sentimientos{
+  margin-top: 1em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+  background: rgb(169, 169, 169,0.4);
+  width: 30%;
+  text-align-last: center;
+}
+
+.div-tabla-sentimientos{
+  background-color: white;
+}
+
+.tabla-sentimientos{
+  margin-top: 1em;
+  border-collapse: collapse;
+  width: 100%;
+  thead{
+      th, td {
+        border: 3px solid black;
+        padding: 8px;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      th {
+        background-color: #A4A4A4;
+      }
+  }
+  tbody{
+    th, td {
+      border: 2px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: white;
+    }
+  }
+}
+
+.text-center{
+  text-align: center;
 }
