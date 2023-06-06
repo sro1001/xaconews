@@ -25,7 +25,7 @@
                         <b>Fuente:</b> {{$noticia->fuente->nombre}}
                     </div>
                     <div class="col-md-12">
-                        <b>Fecha:</b> {{$noticia->fecha->format('m-d-Y')}}
+                        <b>Fecha:</b> {{$noticia->fecha->format('d-m-Y')}}
                     </div>
                     <div class="col-md-12">
                         <b>Bien cultural:</b> {{$noticia->bien_interes_cultural->nombre}}
