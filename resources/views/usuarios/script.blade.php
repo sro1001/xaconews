@@ -86,7 +86,7 @@
                     }
                     });
                     prom_estado.done(function (data) {
-                        swal("Eliminado correctamente", {
+                        swal("Estado cambiado correctamente correctamente", {
                             icon: "success",
                         });
                         $("#tabla").DataTable().ajax.reload();

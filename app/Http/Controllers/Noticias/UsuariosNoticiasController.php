@@ -35,8 +35,8 @@ class UsuariosNoticiasController extends Controller
                         '<div style="color: red; font-weight: bold">No</div>' ;
                 })
                 ->addColumn('action', function ($item) use (&$request) {
-                    return '<a href="'.route('usuarios.editar', $item->id).'" class="btn btn-xs btn-primary"><ion-icon name="create"></ion-icon></a>&nbsp;
-                            <a class="btn btn-xs btn-primary" onclick="script_usuarios.modal_cambiar_estado(event)" data-id="'.$item->id.'" title="Eliminar noticia" data-url="'.route('usuarios.cambiar_estado').'">'.(($item->activo) ? '<ion-icon name="close-circle"></ion-icon>' :'<ion-icon name="checkmark-circle"></ion-icon>').'</a>';
+                    return '<a href="'.route('usuarios.editar', $item->id).'" title="Editar" class="btn btn-xs btn-primary"><ion-icon name="create"></ion-icon></a>&nbsp;
+                            <a class="btn btn-xs btn-primary" onclick="script_usuarios.modal_cambiar_estado(event)" data-id="'.$item->id.'" title="Cambiar estado" data-url="'.route('usuarios.cambiar_estado').'">'.(($item->activo) ? '<ion-icon name="close-circle"></ion-icon>' :'<ion-icon name="checkmark-circle"></ion-icon>').'</a>';
                 })
                 ->rawColumns(['action','estado'])
                 ->setRowId('orden')
