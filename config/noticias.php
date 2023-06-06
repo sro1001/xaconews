@@ -18,6 +18,12 @@ return [
         'CONTENT_PARAMETER' => 'text0'
     ],
     'CHATGPT' => [
-        'QUESTION' => '¿Me puedes dar en un array, el nombre de los sentimientos que se perciben en este texto, junto con una puntuación, y una variable si es un sentimiento negativo o positivo?'
+        'QUESTION' => '¿Me puedes devolver en un array la puntuacion de los sentimientos Alegría, Tristeza, Confianza, Miedo, Orgullo, Enfado, Satisfacción, Asco, Amor, Culpa en el siguiente texto?',
+        'MODEL' => 'text-davinci-003',
+        'TEMPERATURE' => 1,
+        'MAX_TOKENS' => 250,
+        'TOP_P' => 1,
+        'FREQUENCY_PENALTY' => 0,
+        'PRESENCE_PENALTY' => 0,
     ]
 ];

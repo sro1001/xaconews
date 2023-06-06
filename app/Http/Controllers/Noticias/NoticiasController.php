@@ -160,7 +160,7 @@ class NoticiasController extends Controller
                 })
                 ->addColumn('action', function ($item) use (&$request) {
                     return '<a href="'.route('noticias.ver', $item->id).'" title="Ver noticia" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
-                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" title="Ir a noticia" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;'.(($item->estado_id == NoticiaEstado::VISIBLE) ? '<a href="'.route('sentimientos.analisis_sentimientos', $item->id).'" title="Analizar noticia" class="btn btn-xs btn-primary"><ion-icon name="bar-chart"></ion-icon></a>&nbsp;' : '');
+                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" title="Ir a noticia" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;'.(($item->estado_id == NoticiaEstado::VISIBLE) ? ( (strlen($item->texto) < '8000') ? '<a href="'.route('sentimientos.analisis_sentimientos', $item->id).'" title="Analizar noticia" class="btn btn-xs btn-primary"><ion-icon name="bar-chart"></ion-icon></a>&nbsp;': '<a class="btn btn-xs btn-primary" onclick="script_noticias.modal_aviso_longitud(event)" data-id="'.$item->id.'" title="Analizar noticia" data-url="'.route('usuarios.cambiar_estado').'"><ion-icon name="bar-chart"></ion-icon></a>' ): '');
                 })
                 ->rawColumns(['action','estado'])
                 ->setRowId('orden')

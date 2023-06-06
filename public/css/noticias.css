@@ -292,7 +292,7 @@ table.tabla1 tbody tr:nth-child(2n) td {
   width: 100%;
 }
 .tabla-sentimientos thead th, .tabla-sentimientos thead td {
-  border: 3px solid black;
+  border: 2px solid black;
   padding: 8px;
   text-align: center;
   font-weight: bold;

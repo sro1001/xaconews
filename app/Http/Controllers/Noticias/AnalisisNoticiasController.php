@@ -34,13 +34,13 @@ class AnalisisNoticiasController extends Controller
         curl_setopt($llamada_chatGpt, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($llamada_chatGpt, CURLOPT_POST, true);
         $post_data = array(
-            "model" => "text-davinci-003",
+            "model" => config('noticias.CHATGPT')['MODEL'],
             "prompt" => config('noticias.CHATGPT')['QUESTION'].' '.$texto_noticia_llamada,
-            "temperature" => 0.5,
-            "max_tokens" => 500,
-            "top_p" => 1,
-            "frequency_penalty" => 0,
-            "presence_penalty" => 0
+            "temperature" =>  config('noticias.CHATGPT')['TEMPERATURE'],
+            "max_tokens" =>  config('noticias.CHATGPT')['MAX_TOKENS'],
+            "top_p" =>  config('noticias.CHATGPT')['TOP_P'],
+            "frequency_penalty" =>  config('noticias.CHATGPT')['FREQUENCY_PENALTY'],
+            "presence_penalty" =>  config('noticias.CHATGPT')['PRESENCE_PENALTY']
         );
         $post_data = json_encode($post_data);
         curl_setopt($llamada_chatGpt, CURLOPT_POSTFIELDS, $post_data);
@@ -53,15 +53,16 @@ class AnalisisNoticiasController extends Controller
         $respuesta = curl_exec($llamada_chatGpt);
         curl_close($llamada_chatGpt);
         $texto_respuesta = json_decode($respuesta)->choices[0]->text;
-        $lineas_respuesta = explode(';',str_replace(array('[', ']'),'',preg_replace('/\r\n|\r|\n/','', $texto_respuesta)));
-        foreach($lineas_respuesta as $linea_respuesta){
-            if(!empty($linea_respuesta)){
-                $nombre_sentimiento = explode(':',$linea_respuesta)[0];
-                $sentimiento_id = Sentimiento::comprobarSentimiento($nombre_sentimiento,str_contains($linea_respuesta, 'Positivo'));
+        $lineas_respuesta = str_replace('"','',preg_replace('/\r\n|\r|\n/','', $texto_respuesta));
+        $sentimientos = Sentimiento::all();
+        foreach($sentimientos as $sentimiento){
+            $posicion = strpos($lineas_respuesta,$sentimiento->nombre);
+            $puntuacion = substr($lineas_respuesta, $posicion + strlen($sentimiento->nombre)+ 2 , 1);
+            if(is_numeric($puntuacion)){
                 $noticia_sentimiento = new NoticiaSentimiento();
                 $noticia_sentimiento->noticia_id = $noticia_id;
-                $noticia_sentimiento->sentimiento_id = $sentimiento_id;
-                $noticia_sentimiento->puntuacion = trim($this->get_string_between($linea_respuesta,':',','));
+                $noticia_sentimiento->sentimiento_id = $sentimiento->id;
+                $noticia_sentimiento->puntuacion = $puntuacion;
                 $noticia_sentimiento->save();
             }
         }
@@ -70,7 +71,7 @@ class AnalisisNoticiasController extends Controller
         $analisis_noticias_control = SincronizacionNoticias::all()[0];
         $analisis_noticias_control->limite_llamadas_chatGPT -= 1;
         $analisis_noticias_control->save();
-        return redirect()->route('noticias.index');
+        return redirect()->route('noticias.ver',$noticia_id);
     }
 
     function get_string_between($string, $start, $end){

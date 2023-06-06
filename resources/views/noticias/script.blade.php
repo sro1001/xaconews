@@ -63,6 +63,16 @@
             );
         });*/
 
+        let modal_aviso_longitud = function(event) {
+            event.preventDefault();
+            swal({
+                title: "Noticia demasiado larga",
+                text: "La noticia es demasiado larga para ser analizada. Por favor, reduzca la longitud por debajo de los 8000 caracteres para permitir el análisis.",
+                icon: "warning",
+                dangerMode: true,
+            });
+        };
+
         return {
             init: function() {
 
@@ -74,8 +84,11 @@
                 jQuery('#buscar').click(function() {
                     datatable_noticias.ajax.reload();
                 });
-                
+
                 cargar_datatable();
+            },
+            modal_aviso_longitud: function (btn) {
+                modal_aviso_longitud(btn);
             }
         };
     }();

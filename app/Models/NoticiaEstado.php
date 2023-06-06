@@ -39,7 +39,7 @@ class NoticiaEstado extends Model
 	}
 
 	public static function obtenerEstadosNoticiasBuscador(){
-		$estados = NoticiaEstado::all();
+		$estados = NoticiaEstado::orderBy('nombre')->get();
 		$array_estados_buscador = array();
 		foreach($estados as $estado){
 			$array_estados_buscador[$estado->id] = $estado->nombre;

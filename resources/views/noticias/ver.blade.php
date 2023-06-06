@@ -58,7 +58,9 @@
                         {!! Form::textarea('texto', null, array('style'=>'height:auto;','class' => 'form-control'.(($errors->has('nombre')) ? ' is-invalid-input' : ''), 'id' => 'texto')) !!}
                     </div>
                 @else
-                    <button class="btn btn-primary btn-editar-noticia" name="editar_texto"> Editar noticia</button>
+                    @if($noticia->estado_id != App\Models\NoticiaEstado::VISIBLE_ANALIZADA)
+                        <button class="btn btn-primary btn-editar-noticia" name="editar_texto"> Editar noticia</button>
+                    @endif
                     <div class="contenido-noticia">
                         @foreach($noticia->formatearTexto() as $linea_noticia)
                             <div class="col-md-12 linea-noticia">
@@ -85,7 +87,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($noticia->sentimientos as $sentimiento)
+                                @foreach($noticia->sentimientos()->orderBy('puntuacion','desc')->get() as $sentimiento)
                                     <tr>
                                         <th>{{$sentimiento->nombre}}</th>
                                         <th class="text-center">{{$sentimiento->pivot->puntuacion}}</th>
@@ -102,7 +104,9 @@
             @endif
             <div class="col-md-12" style="margin-top:1em;">
                 <a href="{{route('noticias.index')}}" class="btn btn-secondary btn-back">Atrás</a>
-                <button class="btn btn-primary btn-save" type="submit">Guardar</button>
+                @if($noticia->estado_id != App\Models\NoticiaEstado::VISIBLE_ANALIZADA)
+                    <button class="btn btn-primary btn-save" type="submit">Guardar</button>
+                @endif
             </div>
         </div>
             {!! Form::close() !!}
