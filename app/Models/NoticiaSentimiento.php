@@ -61,7 +61,7 @@ class NoticiaSentimiento extends Model
 
 	public static function obtenerSentimientosPorPuntuacion(){
 		$sentimientos = NoticiaSentimiento::join('sentimientos','sentimientos.id','noticias_sentimientos.sentimiento_id')
-											->select('sentimientos.nombre',DB::raw('COUNT(noticias_sentimientos.puntuacion) as casos'),DB::raw('(SUM(noticias_sentimientos.puntuacion)/COUNT(noticias_sentimientos.puntuacion))*10 as suma_puntuacion'))
+											->select('sentimientos.nombre',DB::raw('COUNT(noticias_sentimientos.puntuacion) as casos'),DB::raw('ROUND((SUM(noticias_sentimientos.puntuacion)/COUNT(noticias_sentimientos.puntuacion))*10,1) as suma_puntuacion'))
 											->groupBy('sentimientos.nombre')
 											->orderBy('suma_puntuacion','desc');
 		return $sentimientos;

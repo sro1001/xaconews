@@ -22,7 +22,7 @@
                 labels: {!! $sentimientosChartLabels !!},
                 datasets: [{
                     type: 'bar',
-                    label: 'Media puntuación por sentimiento',
+                    label: 'Media puntuación por sentimiento (%)',
                     data: {!! $sentimientosChartDataPuntuacion !!},
                     borderColor: 'rgb(27, 51, 12)',
                     backgroundColor: 'rgb(27, 51, 12,0.7)'
