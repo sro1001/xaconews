@@ -312,3 +312,14 @@ table.tabla1 tbody tr:nth-child(2n) td {
 .text-center {
   text-align: center;
 }
+
+.titulo-estadisticas {
+  margin-bottom: 0.8em;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+  background: rgba(169, 169, 169, 0.4);
+  width: 30%;
+  -moz-text-align-last: center;
+       text-align-last: center;
+}

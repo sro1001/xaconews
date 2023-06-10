@@ -19,11 +19,19 @@ class AnalisisNoticiasController extends Controller
 {
 
     public function index(Request $request) {
-        if ($request->ajax()) {
-
-        } else {
-
-        }
+        $positiveChartLabels = ['Positivos','Negativos'];
+        $positiveChartData = NoticiaSentimiento::obtenerPuntuacionSentimientos();
+        $datosSentimientosChart = NoticiaSentimiento::obtenerSentimientosPorPuntuacion();
+        $sentimientosChartLabels = $datosSentimientosChart->pluck('nombre')->toArray();
+        $datosSentimientosChartDataPuntuacion = $datosSentimientosChart->pluck('suma_puntuacion')->toArray();
+        $datosSentimientosChartDataCasos = $datosSentimientosChart->pluck('casos')->toArray();
+        return view('sentimientos.index', [
+            'positiveChartLabels' => json_encode(array_values($positiveChartLabels)),
+            'positiveChartData' => json_encode(array_values($positiveChartData)),
+            'sentimientosChartLabels' => json_encode(array_values($sentimientosChartLabels)),
+            'sentimientosChartDataCasos' => json_encode(array_values($datosSentimientosChartDataCasos)),
+            'sentimientosChartDataPuntuacion' => json_encode(array_values($datosSentimientosChartDataPuntuacion))
+        ]);
     }
 
     public function analisis_sentimientos($noticia_id,Request $request) {
