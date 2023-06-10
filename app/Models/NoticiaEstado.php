@@ -38,8 +38,13 @@ class NoticiaEstado extends Model
 		return $this->hasMany(Noticia::class, 'estado_id');
 	}
 
-	public static function obtenerEstadosNoticiasBuscador(){
-		$estados = NoticiaEstado::orderBy('nombre')->get();
+	public static function obtenerEstadosNoticiasBuscador($edicion = false){
+		if($edicion){
+			$estados = NoticiaEstado::where('id','!=',NoticiaEstado::VISIBLE_ANALIZADA)->orderBy('nombre')->get();
+		}else{
+			$estados = NoticiaEstado::orderBy('nombre')->get();
+		}
+
 		$array_estados_buscador = array();
 		foreach($estados as $estado){
 			$array_estados_buscador[$estado->id] = $estado->nombre;

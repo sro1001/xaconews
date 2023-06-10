@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::put('revision/{id}', 'Noticias\NoticiasController@revision')->name('revision');
         Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editar_texto_noticia')->name('editar_texto_noticia');
         Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
+        Route::get('ver_noticia_dashboard/{id}', 'Noticias\NoticiasController@ver_noticia_dashboard')->name('ver_noticia_dashboard');
     });
 
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {

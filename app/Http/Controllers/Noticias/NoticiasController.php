@@ -184,12 +184,13 @@ class NoticiasController extends Controller
 
     public function ver($id) {
         $noticia = Noticia::findOrFail($id);
-        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador();
+        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador(true);
 
         return view('noticias.ver', [
             'noticia' => $noticia,
             'noticias_estados' => $noticias_estados,
-            'edicion_texto' => false
+            'edicion_texto' => false,
+            'vision_dashboard' => false
         ]);
     }
 
@@ -213,12 +214,22 @@ class NoticiasController extends Controller
 
     public function editar_texto_noticia($id){
         $noticia = Noticia::findOrFail($id);
-        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador();
+        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasEdicion(true);
 
         return view('noticias.ver', [
             'noticia' => $noticia,
             'noticias_estados' => $noticias_estados,
-            'edicion_texto' => true
+            'edicion_texto' => true,
+            'vision_dashboard' => false
+        ]);
+    }
+
+    public function ver_noticia_dashboard($id) {
+        $noticia = Noticia::findOrFail($id);
+
+        return view('noticias.ver', [
+            'noticia' => $noticia,
+            'vision_dashboard' => true
         ]);
     }
 

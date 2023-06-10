@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Noticia;
+use App\Models\NoticiaEstado;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $noticias = Noticia::whereIn('estado_id',[NoticiaEstado::VISIBLE,NoticiaEstado::VISIBLE_ANALIZADA])->get();
+        return view('home', [
+            'noticias' => $noticias
+        ]);
     }
 }

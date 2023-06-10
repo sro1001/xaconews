@@ -323,3 +323,51 @@ table.tabla1 tbody tr:nth-child(2n) td {
   -moz-text-align-last: center;
        text-align-last: center;
 }
+
+.div-contenedor-dashboard {
+  margin-bottom: 2em;
+  background-color: white;
+  padding-top: 15px;
+}
+
+.div-noticias-dashboard {
+  border: double;
+  margin-bottom: 3em;
+}
+
+.contenido-noticia-ds {
+  margin-top: 0.5em;
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 1em 1em;
+  font-size: 13px;
+  text-align: justify;
+}
+
+.titulo-noticia-ds {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 7px;
+}
+
+.linea-noticia-ds {
+  font-family: "Times New Roman", Times, serif;
+  margin-top: 0.8em;
+  border-left: solid;
+}
+
+.btn-ver-mas {
+  position: absolute;
+  right: 2rem;
+  font-size: 12px;
+  padding: 0.6rem 1rem 0.5rem 1rem;
+  margin-top: -0.5rem;
+}
+
+.titulo-noticia-ver-ds {
+  font-size: 25px;
+  font-weight: bold;
+  color: #1b330c;
+  background: rgba(169, 169, 169, 0.4);
+}
