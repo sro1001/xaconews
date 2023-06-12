@@ -214,7 +214,7 @@ class NoticiasController extends Controller
 
     public function editar_texto_noticia($id){
         $noticia = Noticia::findOrFail($id);
-        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasEdicion(true);
+        $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador(true);
 
         return view('noticias.ver', [
             'noticia' => $noticia,
