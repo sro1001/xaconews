@@ -11,6 +11,9 @@
                             <div class="titulo-noticia-ds">
                                 {{$noticia->titulo}}
                             </div>
+                            <div class="fecha-fuente-ds">
+                                {{$noticia->fecha->format('d/m/Y')}} - {{$noticia->fuente->nombre}}
+                            </div>
                             <div class="contenido-noticia-ds">
                                 @foreach(array_slice($noticia->formatearTexto(), 0, 5) as $linea_noticia)
                                     <div class="col-md-12 linea-noticia-ds">

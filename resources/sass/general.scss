@@ -360,10 +360,9 @@ table.tabla1
 }
 
 .contenido-noticia-ds{
-  margin-top: 0.5em;
   width: 100%;
   height: auto;
-  padding: 1em 1em 1em 1em;
+  padding: 0em 1em 1em 1em;
   font-size: 13px;
   text-align: justify;
 }
@@ -372,7 +371,15 @@ table.tabla1
   font-family: "Times New Roman", Times, serif;
   font-size: 15px;
   font-weight: bold;
-  margin: 7px;
+  margin: 7px 10px 0px 7px;
+}
+
+.fecha-fuente-ds{
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  font-style: italic;
+  //font-weight: bold;
+  margin: 0px 0px 10px 10px;
 }
 
 .linea-noticia-ds{
