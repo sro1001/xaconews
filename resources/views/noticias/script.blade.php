@@ -27,7 +27,7 @@
                         "next": "Siguiente",
                         "previous": "Anterior"
                     },
-                    "processing":   "<span style='color:#1b330c' class='fa-stack fa-lg'>\n\
+                    "processing": "<span class='spinner-cargando fa-stack fa-lg'>\n\
                                         <i class='fa fa-spinner fa-spin fa-stack-2x fa-fw'></i>\n\
                                     </span>&emsp;Cargando...",
                     "zeroRecords": "Sin resultados",

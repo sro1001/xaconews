@@ -377,3 +377,8 @@ table.tabla1 tbody tr:nth-child(2n) td {
   color: #1b330c;
   background: rgba(169, 169, 169, 0.4);
 }
+
+.spinner-cargando {
+  margin-left: 1em;
+  color: #1b330c;
+}
