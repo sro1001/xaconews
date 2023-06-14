@@ -15,7 +15,7 @@ class NoticiasExport implements FromCollection, WithColumnWidths, WithStyles
     public function collection()
     {
         $coleccion_noticias = new Collection();
-        $cabecera = ["Título","Fecha","Fuente","BienCultural","Municipio","Provincia","Estado","URL","Texto","Alegría","Tristeza","Confianza","Miedo","Orgullo","Enfado","Satisfacción","Asco","Amor","Culpa","Positivo"];
+        $cabecera = ["Título","Fecha","Fuente","BienCultural","Municipio","Provincia","Estado","URL","Texto","Alegría","Tristeza","Confianza","Miedo","Orgullo","Enfado","Satisfacción","Asco","Amor","Culpa","Positividad"];
         $coleccion_noticias->push($cabecera);
         $noticias = Noticia::all();
         foreach($noticias as $noticia){
@@ -30,36 +30,38 @@ class NoticiasExport implements FromCollection, WithColumnWidths, WithStyles
                 $noticia->url,
                 substr($noticia->texto, 0, Noticia::MAX_CHARS_TEXTO_EXCEL),
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ALEGRIA)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ALEGRIA)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ALEGRIA)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::TRISTEZA)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::TRISTEZA)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::TRISTEZA)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CONFIANZA)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CONFIANZA)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CONFIANZA)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::MIEDO)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::MIEDO)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::MIEDO)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ORGULLO)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ORGULLO)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ORGULLO)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ENFADO)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ENFADO)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ENFADO)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::SATISFACCION)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::SATISFACCION)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::SATISFACCION)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ASCO)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ASCO)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::ASCO)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::AMOR)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::AMOR)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::AMOR)->get()[0]->pivot->puntuacion):
                     "0",
                 (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CULPA)->get()) > 0) ?
-                    $noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CULPA)->get()[0]->pivot->puntuacion:
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::CULPA)->get()[0]->pivot->puntuacion):
                     "0",
-                "10"
+                (count($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::POSITIVO_NEGATIVO)->get()) > 0) ?
+                    strval($noticia->sentimientos()->where('sentimiento_id','=',Sentimiento::POSITIVO_NEGATIVO)->get()[0]->pivot->puntuacion):
+                    "0"
             ]);
         }
         return $coleccion_noticias;

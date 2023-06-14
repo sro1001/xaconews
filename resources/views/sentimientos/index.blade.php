@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Comparativa de puntuación entre sentimientos positivos y negativos en %</div>
+                <div class="card-header">Puntuación de positividad en las noticias</div>
                 <canvas id="positiveChart" style="margin-top:1em"></canvas>
             </div>
         </div>

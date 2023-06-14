@@ -91,7 +91,6 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Puntuación</th>
-                                    <th>Tipo</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,7 +98,6 @@
                                     <tr>
                                         <th>{{$sentimiento->nombre}}</th>
                                         <th class="text-center">{{$sentimiento->pivot->puntuacion}}</th>
-                                        <th class="text-center">{{($sentimiento->positivo) ? 'Positivo' : 'Negativo'}}</th>
                                     </tr>
 
                                 @endforeach

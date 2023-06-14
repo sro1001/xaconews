@@ -19,6 +19,7 @@ return [
     ],
     'CHATGPT' => [
         'QUESTION' => '¿Me puedes devolver en un array la puntuacion de los sentimientos Alegría, Tristeza, Confianza, Miedo, Orgullo, Enfado, Satisfacción, Asco, Amor, Culpa en el siguiente texto?',
+        'QUESTION_POSITIVIDAD' => '¿De 0 a 10 cuan positivo es este texto en un número entero?',
         'MODEL' => 'text-davinci-003',
         'TEMPERATURE' => 1,
         'MAX_TOKENS' => 250,

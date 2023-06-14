@@ -16,7 +16,6 @@ class CreateSentimientosTable extends Migration
         Schema::create('sentimientos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->boolean('positivo');
         });
     }
 

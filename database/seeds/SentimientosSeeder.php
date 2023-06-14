@@ -61,5 +61,10 @@ class SentimientosSeeder extends Seeder
             'nombre' => 'Culpa',
             'positivo' => 0
         ]);
+        DB::table('sentimientos')->insert([
+            'id' => 11  ,
+            'nombre' => 'Positividad',
+            'positivo' => 0
+        ]);
     }
 }

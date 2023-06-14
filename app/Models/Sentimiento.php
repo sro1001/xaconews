@@ -40,6 +40,7 @@ class Sentimiento extends Model
 	const ASCO = 8;
 	const AMOR = 9;
     const CULPA = 10;
+	const POSITIVO_NEGATIVO = 11;
 
 	public function noticias()
 	{

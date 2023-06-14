@@ -2,15 +2,14 @@
     jQuery(document).ready(function() {
         var ctx = document.getElementById('positiveChart').getContext('2d');
         var chart = new Chart(ctx, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels:  {!! $positiveChartLabels !!},
                 datasets: [{
                     data: {!! $positiveChartData !!},
-                    backgroundColor: [
-                        'rgb(27, 51, 12)',
-                        'rgb(121, 195, 69)'
-                    ]
+                    label: 'Nº noticias',
+                    borderColor: 'rgb(27, 51, 12)',
+                    backgroundColor: 'rgb(27, 51, 12)'
                 }]
             }
         });
@@ -22,7 +21,7 @@
                 labels: {!! $sentimientosChartLabels !!},
                 datasets: [{
                     type: 'bar',
-                    label: 'Media puntuación por sentimiento (%)',
+                    label: 'Media puntuación por sentimiento (sobre 100)',
                     data: {!! $sentimientosChartDataPuntuacion !!},
                     borderColor: 'rgb(27, 51, 12)',
                     backgroundColor: 'rgb(27, 51, 12,0.7)'

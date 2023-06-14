@@ -236,7 +236,7 @@ class NoticiasController extends Controller
     }
 
     public function exportar_noticias(){
-        return Excel::download(new NoticiasExport, 'noticias.xlsx');
+        return Excel::download(new NoticiasExport, 'Noticias.xlsx');
     }
 
 }
