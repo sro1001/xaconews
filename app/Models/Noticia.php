@@ -57,6 +57,7 @@ class Noticia extends Model
 	];
 
 	const MAX_CHARS_TEXTO_EXCEL = 32000;
+	const MAX_CHARS_TEXTO_CHAT_GPT = 8000;
 
 	public function bien_interes_cultural()
 	{
