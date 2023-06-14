@@ -46,6 +46,7 @@
             <div class="col-md-12">
                 <div class="titulo-listado">
                     Listado de noticias
+                    <a class="btn btn-primary btn-crear" href="{{route('noticias.exportar_noticias')}}">Exportar Excel</a>
                 </div>
             </div>
             <div class="col-md-12">

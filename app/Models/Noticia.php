@@ -56,6 +56,8 @@ class Noticia extends Model
 		'estado_id'
 	];
 
+	const MAX_CHARS_TEXTO_EXCEL = 32000;
+
 	public function bien_interes_cultural()
 	{
 		return $this->belongsTo(BienInteresCultural::class, 'bien_interes_cultural_id');

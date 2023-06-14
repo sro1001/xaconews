@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editar_texto_noticia')->name('editar_texto_noticia');
         Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
         Route::get('ver_noticia_dashboard/{id}', 'Noticias\NoticiasController@ver_noticia_dashboard')->name('ver_noticia_dashboard');
+        Route::get('exportar_noticias', 'Noticias\NoticiasController@exportar_noticias')->name('exportar_noticias');
     });
 
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {

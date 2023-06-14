@@ -30,6 +30,17 @@ class Sentimiento extends Model
 		'positivo'
 	];
 
+	const ALEGRIA = 1;
+    const TRISTEZA = 2;
+	const CONFIANZA = 3;
+	const MIEDO = 4;
+	const ORGULLO = 5;
+    const ENFADO = 6;
+	const SATISFACCION = 7;
+	const ASCO = 8;
+	const AMOR = 9;
+    const CULPA = 10;
+
 	public function noticias()
 	{
 		return $this->belongsToMany(Noticia::class, 'noticias_sentimientos')

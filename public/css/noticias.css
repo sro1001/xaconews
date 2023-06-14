@@ -32,7 +32,7 @@
   display: inline-block;
   float: left;
   padding: 0.5rem 0 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   position: relative;
 }
 
@@ -253,7 +253,7 @@ table.tabla1 tbody tr:nth-child(2n) td {
   position: absolute;
   right: 1.9rem;
   margin-top: 0.4em;
-  font-size: 16px;
+  font-size: 15px;
   padding: 0.6rem 1rem 0.5rem 1rem;
   z-index: 1;
 }

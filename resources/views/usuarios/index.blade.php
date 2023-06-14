@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top:2em;">
+        <div class="row">
             <div class="col-md-12">
                 <div class="titulo-listado">
                     Listado de usuarios

@@ -16,6 +16,8 @@ use App\Models\NoticiaEstado;
 use Carbon\Carbon;
 use \Datetime;
 use Yajra\DataTables\DataTables;
+use App\Exports\NoticiasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NoticiasController extends Controller
 {
@@ -231,6 +233,10 @@ class NoticiasController extends Controller
             'noticia' => $noticia,
             'vision_dashboard' => true
         ]);
+    }
+
+    public function exportar_noticias(){
+        return Excel::download(new NoticiasExport, 'noticias.xlsx');
     }
 
 }
