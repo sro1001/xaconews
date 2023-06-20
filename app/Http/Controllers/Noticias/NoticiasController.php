@@ -22,7 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class NoticiasController extends Controller
 {
 
-    public function sincronizar_noticias(){
+    public function sincronizarNoticias(){
         ini_set('memory_limit','2G');
 		set_time_limit(360*60);
         $bienes_interes_cultural = BienInteresCultural::all();
@@ -214,7 +214,7 @@ class NoticiasController extends Controller
         }
     }
 
-    public function editar_texto_noticia($id){
+    public function editarTextoNoticia($id){
         $noticia = Noticia::findOrFail($id);
         $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador(true);
 
@@ -226,7 +226,7 @@ class NoticiasController extends Controller
         ]);
     }
 
-    public function ver_noticia_dashboard($id) {
+    public function verNoticiaDashboard($id) {
         $noticia = Noticia::findOrFail($id);
 
         return view('noticias.ver', [
@@ -235,7 +235,7 @@ class NoticiasController extends Controller
         ]);
     }
 
-    public function exportar_noticias(){
+    public function exportarNoticias(){
         return Excel::download(new NoticiasExport, 'Noticias.xlsx');
     }
 

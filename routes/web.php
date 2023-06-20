@@ -33,14 +33,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['prefix' => 'noticias', 'as' => 'noticias.'], function () {
-        Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizar_noticias')->name('sincronizar_noticias');
+        Route::get('sincronizar_noticias', 'Noticias\NoticiasController@sincronizarNoticias')->name('sincronizar_noticias');
         Route::get('index', 'Noticias\NoticiasController@index')->name('index');
         Route::get('ver/{id}', 'Noticias\NoticiasController@ver')->name('ver');
         Route::put('revision/{id}', 'Noticias\NoticiasController@revision')->name('revision');
-        Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editar_texto_noticia')->name('editar_texto_noticia');
+        Route::get('editar_texto_noticia/{id}', 'Noticias\NoticiasController@editarTextoNoticia')->name('editar_texto_noticia');
         Route::delete('eliminar', 'Noticias\NoticiasController@eliminar')->name('eliminar');
-        Route::get('ver_noticia_dashboard/{id}', 'Noticias\NoticiasController@ver_noticia_dashboard')->name('ver_noticia_dashboard');
-        Route::get('exportar_noticias', 'Noticias\NoticiasController@exportar_noticias')->name('exportar_noticias');
+        Route::get('ver_noticia_dashboard/{id}', 'Noticias\NoticiasController@verNoticiaDashboard')->name('ver_noticia_dashboard');
+        Route::get('exportar_noticias', 'Noticias\NoticiasController@exportarNoticias')->name('exportar_noticias');
     });
 
     Route::group(['prefix' => 'usuarios', 'as' => 'usuarios.'], function () {
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'sentimientos', 'as' => 'sentimientos.'], function () {
         Route::get('index', 'Noticias\AnalisisNoticiasController@index')->name('index');
-        Route::get('analisis_sentimientos/{id}', 'Noticias\AnalisisNoticiasController@analisis_sentimientos')->name('analisis_sentimientos');
+        Route::get('analisis_sentimientos/{id}', 'Noticias\AnalisisNoticiasController@analisisSentimientos')->name('analisis_sentimientos');
     });
 });
 

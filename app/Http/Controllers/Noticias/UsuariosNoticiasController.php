@@ -102,7 +102,7 @@ class UsuariosNoticiasController extends Controller
     }
 
 
-    public function cambiar_estado(Request $request) {
+    public function cambiarEstado(Request $request) {
         if ($request->ajax()) {
             \DB::beginTransaction();
 

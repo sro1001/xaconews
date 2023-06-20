@@ -34,7 +34,7 @@ class AnalisisNoticiasController extends Controller
         ]);
     }
 
-    public function analisis_sentimientos($noticia_id,Request $request) {
+    public function analisisSentimientos($noticia_id,Request $request) {
         $noticia = Noticia::find($noticia_id);
         $llamada_chatGpt = curl_init();
         $texto_noticia_llamada = preg_replace('/\r\n|\r|\n/','', $noticia->texto);
