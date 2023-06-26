@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('insertar', 'Noticias\UsuariosNoticiasController@insertar')->name('insertar');
         Route::get('editar/{id}', 'Noticias\UsuariosNoticiasController@editar')->name('editar');
         Route::put('actualizar/{id}', 'Noticias\UsuariosNoticiasController@actualizar')->name('actualizar');
-        Route::put('cambiar_estado', 'Noticias\UsuariosNoticiasController@cambiar_estado')->name('cambiar_estado');
+        Route::put('cambiar_estado', 'Noticias\UsuariosNoticiasController@cambiarEstado')->name('cambiar_estado');
     });
 
     Route::group(['prefix' => 'sentimientos', 'as' => 'sentimientos.'], function () {
