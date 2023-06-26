@@ -38,6 +38,6 @@ class SincronizacionNoticias extends Command
      */
     public function handle()
     {
-        (new NoticiasController)->sincronizar_noticias();
+        (new NoticiasController)->sincronizarNoticias();
     }
 }
