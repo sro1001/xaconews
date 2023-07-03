@@ -35,11 +35,23 @@ class Localidad extends Model
 		'municipio_id'
 	];
 
+	/**
+	 * Devuelve el municipio de la provincia
+	 *
+	 * @access public
+	 * @return Municipio
+	 */
 	public function municipio()
 	{
 		return $this->belongsTo(Municipio::class);
 	}
 
+	/**
+	 * Devuelve los bienes de interés cultural de la localidad
+	 *
+	 * @access public
+	 * @return Collection|BienInteresCultural
+	 */
 	public function bienes_interes_cultural()
 	{
 		return $this->hasMany(BienInteresCultural::class, 'localidad_id');

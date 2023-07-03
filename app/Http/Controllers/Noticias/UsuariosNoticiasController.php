@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Noticias;
 
 use App\Http\Controllers\Controller;
@@ -9,8 +13,20 @@ use Yajra\DataTables\DataTables;
 use App\Models\Usuario;
 use App\Models\Rol;
 
+/**
+ * Class UsuariosNoticiasController
+ *
+ * @package App\Http\Controllers\Noticias
+ */
 class UsuariosNoticiasController extends Controller
 {
+    /**
+	 * Devuelve el listado de usuarios
+	 *
+	 * @access public
+	 * @param Request $request
+	 * @return View
+	 */
     public function index(Request $request) {
         if ($request->ajax()) {
 
@@ -50,7 +66,12 @@ class UsuariosNoticiasController extends Controller
         }
     }
 
-
+    /**
+	 * Devuelve la vista para la creación de usuarios
+	 *
+	 * @access public
+	 * @return View
+	 */
     public function crear() {
         $roles = Rol::obtenerRolesBuscador();
         return view('usuarios.form', [
@@ -58,7 +79,13 @@ class UsuariosNoticiasController extends Controller
         ]);
     }
 
-
+    /**
+	 * Inserta el nuevo usuario en base de datos
+	 *
+	 * @access public
+	 * @param Request $request
+	 * @return Route
+	 */
     public function insertar(Request $request) {
         \DB::beginTransaction();
 
@@ -75,7 +102,13 @@ class UsuariosNoticiasController extends Controller
         return redirect()->route('usuarios.index');
     }
 
-
+    /**
+	 * Devuelve la vista para la edición de usuarios
+	 *
+	 * @access public
+	 * @param Int $id
+	 * @return View
+	 */
     public function editar($id) {
         $usuario = Usuario::findOrFail($id);
         $roles = Rol::obtenerRolesBuscador();
@@ -85,7 +118,14 @@ class UsuariosNoticiasController extends Controller
         ]);
     }
 
-
+    /**
+	 * Actualiza la información de los usuarios
+	 *
+	 * @access public
+	 * @param Int $id
+     * @param Request $request
+	 * @return Route
+	 */
     public function actualizar($id, Request $request) {
         \DB::beginTransaction();
 
@@ -101,7 +141,12 @@ class UsuariosNoticiasController extends Controller
         return redirect()->route('usuarios.index');
     }
 
-
+    /**
+	 * Actualiza el estado de los usuarios
+	 *
+	 * @access public
+     * @param Request $request
+	 */
     public function cambiarEstado(Request $request) {
         if ($request->ajax()) {
             \DB::beginTransaction();

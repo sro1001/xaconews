@@ -56,30 +56,63 @@ class Noticia extends Model
 		'estado_id'
 	];
 
+	//Máximo de caracteres en una celda de Excel. Limita el campo texto al exportar noticias
 	const MAX_CHARS_TEXTO_EXCEL = 32000;
+
+	//Máximo de caracteres en una noticia para analizar su texto
 	const MAX_CHARS_TEXTO_CHAT_GPT = 8000;
 
+	/**
+	 * Devuelve el bien de interés cultural asociado a la noticia
+	 *
+	 * @access public
+	 * @return BienInteresCultural
+	 */
 	public function bien_interes_cultural()
 	{
 		return $this->belongsTo(BienInteresCultural::class, 'bien_interes_cultural_id');
 	}
 
+	/**
+	 * Devuelve la fuente asociada a la noticia
+	 *
+	 * @access public
+	 * @return Fuente
+	 */
 	public function fuente()
 	{
 		return $this->belongsTo(Fuente::class);
 	}
 
+	/**
+	 * Devuelve el estado asociado a la noticia
+	 *
+	 * @access public
+	 * @return NoticiaEstado
+	 */
 	public function estado()
 	{
 		return $this->belongsTo(NoticiaEstado::class);
 	}
 
+	/**
+	 * Devuelve los sentimientos y puntuación asociados a la noticia
+	 *
+	 * @access public
+	 * @return Collection|Sentimiento
+	 */
 	public function sentimientos()
 	{
 		return $this->belongsToMany(Sentimiento::class, 'noticias_sentimientos')
 					->withPivot('id', 'puntuacion');
 	}
 
+	/**
+	 * Limpia el texto de la noticia para mostrarlo en la web
+	 *
+	 * @access public
+	 * @return Array
+	 */
 	public function formatearTexto()
 	{
 		$lineas_noticia = preg_split('/\r\n|\r|\n/', $this->texto);

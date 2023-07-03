@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Noticias;
 
 use App\Http\Controllers\Controller;
@@ -19,9 +23,18 @@ use Yajra\DataTables\DataTables;
 use App\Exports\NoticiasExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+/**
+ * Class NoticiasController
+ *
+ * @package App\Http\Controllers\Noticias
+ */
 class NoticiasController extends Controller
 {
-
+    /**
+	 * Obtiene las noticias de Google News RSS y las guarda en base de datos
+	 *
+	 * @access public
+	 */
     public function sincronizarNoticias(){
         ini_set('memory_limit','2G');
 		set_time_limit(360*60);
@@ -106,7 +119,15 @@ class NoticiasController extends Controller
         }
     }
 
+    /**
+	 * Devuelve la vista del listado de noticias
+	 *
+	 * @access public
+	 * @param Request $request
+	 * @return View
+	 */
     public function index(Request $request) {
+
         if ($request->ajax()) {
 
             $noticias = Noticia::query();
@@ -183,6 +204,13 @@ class NoticiasController extends Controller
         }
     }
 
+    /**
+	 * Devuelve la vista del detalle de noticia
+	 *
+	 * @access public
+	 * @param Int $id
+	 * @return View
+	 */
     public function ver($id) {
         $noticia = Noticia::findOrFail($id);
         $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador(true);
@@ -195,7 +223,14 @@ class NoticiasController extends Controller
         ]);
     }
 
-
+    /**
+	 * Guarda la información editada de la noticia
+	 *
+	 * @access public
+	 * @param Int $noticia_id
+     * @param Request $request
+	 * @return Route
+	 */
     public function revision($noticia_id, Request $request) {
         $noticia = Noticia::findOrFail($noticia_id);
         if(isset($request->estado_id)){
@@ -213,6 +248,13 @@ class NoticiasController extends Controller
         }
     }
 
+     /**
+	 * Devuelve la vista para editar la noticia
+	 *
+	 * @access public
+	 * @param Int $id
+	 * @return View
+	 */
     public function editarTextoNoticia($id){
         $noticia = Noticia::findOrFail($id);
         $noticias_estados = NoticiaEstado::obtenerEstadosNoticiasBuscador(true);
@@ -225,6 +267,13 @@ class NoticiasController extends Controller
         ]);
     }
 
+    /**
+	 * Devuelve la vista para leer la noticia desde el dashboard
+	 *
+	 * @access public
+	 * @param Int $id
+	 * @return View
+	 */
     public function verNoticiaDashboard($id) {
         $noticia = Noticia::findOrFail($id);
 
@@ -234,6 +283,12 @@ class NoticiasController extends Controller
         ]);
     }
 
+    /**
+	 * Exporta el Excel de noticias
+	 *
+	 * @access public
+	 * @return Excel
+	 */
     public function exportarNoticias(){
         return Excel::download(new NoticiasExport, 'Noticias.xlsx');
     }

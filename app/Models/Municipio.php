@@ -36,21 +36,46 @@ class Municipio extends Model
 		'provincia_id'
 	];
 
+	/**
+	 * Devuelve la provincia del municipio
+	 *
+	 * @access public
+	 * @return Provincia
+	 */
 	public function provincia()
 	{
 		return $this->belongsTo(Provincia::class);
 	}
 
+	/**
+	 * Devuelve los bienes de interés cultural asociadas al municipio
+	 *
+	 * @access public
+	 * @return Collection|BienInteresCultural
+	 */
 	public function bienes_interes_cultural()
 	{
 		return $this->hasMany(BienInteresCultural::class);
 	}
 
+	/**
+	 * Devuelve las localidades asociadas al municipio
+	 *
+	 * @access public
+	 * @return Collection|Localidad
+	 */
 	public function localidades()
 	{
 		return $this->hasMany(Localidad::class);
 	}
 
+	/**
+	 * Devuelve los municipios en un formato útil para campos select
+	 *
+	 * @access public
+	 * @static
+	 * @return Array
+	 */
 	public static function obtenerMunicipiosBuscador(){
 		$municipios = Municipio::orderBy('nombre')->get();
 		$array_municipios_buscador = array();

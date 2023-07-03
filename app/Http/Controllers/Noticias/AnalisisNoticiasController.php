@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Noticias;
 
 use App\Http\Controllers\Controller;
@@ -15,9 +19,21 @@ use Carbon\Carbon;
 use \Datetime;
 use Yajra\DataTables\DataTables;
 
+/**
+ * Class AnalisisNoticiasController
+ *
+ * @package App\Http\Controllers\Noticias
+ */
 class AnalisisNoticiasController extends Controller
 {
 
+    /**
+	 * Devuelve la vista con el dashboard de estadísticias
+	 *
+	 * @access public
+	 * @param Request $request
+	 * @return View
+	 */
     public function index(Request $request) {
         $positiveChartLabels = ['0-3','4-6','7-8','9-10'];
         $positiveChartData = NoticiaSentimiento::obtenerPuntuacionSentimientos();
@@ -34,6 +50,14 @@ class AnalisisNoticiasController extends Controller
         ]);
     }
 
+    /**
+	 * Ejecuta el análisis de sentimientos para la noticia
+	 *
+	 * @access public
+     * @param Int $noticia_id
+	 * @param Request $request
+	 * @return Route
+	 */
     public function analisisSentimientos($noticia_id,Request $request) {
         $noticia = Noticia::find($noticia_id);
         $llamada_chatGpt = curl_init();

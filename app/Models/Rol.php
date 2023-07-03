@@ -28,15 +28,29 @@ class Rol extends Model
 		'nombre'
 	];
 
+	//Constantes para los roles
 	const ADMIN = 1;
     const EDITOR = 2;
 	const LECTOR = 3;
 
+	/**
+	 * Devuelve los usuarios asociados a cada rol
+	 *
+	 * @access public
+	 * @return Collection|Usuario
+	 */
 	public function usuarios()
 	{
 		return $this->hasMany(Usuario::class, 'rol_id');
 	}
 
+	/**
+	 * Devuelve los roles en un formato útil para campos select
+	 *
+	 * @access public
+	 * @static
+	 * @return Array
+	 */
 	public static function obtenerRolesBuscador(){
 		$roles = Rol::orderBy('nombre')->get();
 		$array_roles_buscador = array();
@@ -46,6 +60,14 @@ class Rol extends Model
 		return $array_roles_buscador;
 	}
 
+	/**
+	 * Devuelve el nombre del rol pasado por parámetro
+	 *
+	 * @access public
+	 * @param Int $rol_id
+	 * @static
+	 * @return String
+	 */
 	public static function obtenerTextoRol($rol_id){
 		$rol = Rol::find($rol_id);
 		return $rol->nombre;

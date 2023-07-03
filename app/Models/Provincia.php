@@ -29,16 +29,35 @@ class Provincia extends Model
 		'nombre'
 	];
 
+	/**
+	 * Devuelve los bienes de interés cultural asociados a la provincia
+	 *
+	 * @access public
+	 * @return Collection|BienInteresCultural
+	 */
 	public function bienes_interes_cultural()
 	{
 		return $this->hasMany(BienInteresCultural::class);
 	}
 
+	/**
+	 * Devuelve los municipios asociados a la provincia
+	 *
+	 * @access public
+	 * @return Collection|Municipio
+	 */
 	public function municipios()
 	{
 		return $this->hasMany(Municipio::class);
 	}
 
+	/**
+	 * Devuelve las provincias en un formato útil para campos select
+	 *
+	 * @access public
+	 * @static
+	 * @return Array
+	 */
 	public static function obtenerProvinciasBuscador(){
 		$provincias = Provincia::orderBy('nombre')->get();
 		$array_provincias_buscador = array();

@@ -28,16 +28,31 @@ class NoticiaEstado extends Model
 		'nombre'
 	];
 
+	//Constantes para cada estado de noticia
 	const SIN_REVISAR = 1;
     const VISIBLE = 2;
 	const OCULTO = 3;
 	const VISIBLE_ANALIZADA = 4;
 
+	/**
+	 * Devuelve las noticias asociadas a cada estado
+	 *
+	 * @access public
+	 * @return Collection|Noticia
+	 */
 	public function noticias()
 	{
 		return $this->hasMany(Noticia::class, 'estado_id');
 	}
 
+	/**
+	 * Obtiene los estados para los campos de select
+	 *
+	 * @access public
+	 * @param Boolean $edicion
+	 * @static
+	 * @return Array
+	 */
 	public static function obtenerEstadosNoticiasBuscador($edicion = false){
 		if($edicion){
 			$estados = NoticiaEstado::where('id','!=',NoticiaEstado::VISIBLE_ANALIZADA)->orderBy('nombre')->get();

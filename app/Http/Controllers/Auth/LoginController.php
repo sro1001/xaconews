@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -41,11 +45,24 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+	 * Devuelve la vista para el log-in
+	 *
+	 * @access public
+	 * @return View
+	 */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    /**
+	 * Comprueba el log-in
+	 *
+	 * @access public
+     * @param Request $request
+	 * @return Route
+	 */
     public function login(Request $request)
     {
         $usuario = Usuario::whereEmail($request->input('email'))->first();
@@ -66,6 +83,13 @@ class LoginController extends Controller
         );
     }
 
+    /**
+	 * Función para cerrar sesión
+	 *
+	 * @access public
+     * @param Request $request
+	 * @return Route
+	 */
     public function logout(Request $request)
     {
         \Auth::logout();

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;

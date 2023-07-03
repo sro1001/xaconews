@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Imports;
 
 use App\Models\BienInteresCultural;
@@ -9,9 +13,16 @@ use App\Models\Provincia;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 
+/**
+ * Class BienCulturalImport
+ *
+ * @package App\Imports
+ */
 class BienCulturalImport implements ToModel
 {
     /**
+     * Función que importa los bienes de interés cultural a través del Excel
+     *
      * @param array $fila
      *
      * @return BienCulturalImport|null

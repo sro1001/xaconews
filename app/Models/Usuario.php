@@ -60,6 +60,12 @@ class Usuario extends Model implements AuthenticatableContract, AuthorizableCont
 		'activo'
 	];
 
+	/**
+	 * Devuelve el roles asociado al usuario
+	 *
+	 * @access public
+	 * @return Rol
+	 */
 	public function rol()
 	{
 		return $this->belongsTo(Rol::class, 'rol_id');

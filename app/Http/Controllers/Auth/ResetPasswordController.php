@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -32,12 +36,26 @@ class ResetPasswordController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    /**
+	 * Devuelve la vista para el cambio de contraseña
+	 *
+	 * @access public
+     * @param String $token
+     * @param Request $request
+	 * @return View
+	 */
     public function resetPassword($token,Request $request)
     {
         return view('auth.passwords.reset', ['token' => $token]);
     }
 
-
+    /**
+	 * Efectúa el cambio de contraseña
+	 *
+	 * @access public
+     * @param Request $request
+	 * @return Route
+	 */
     public function reset(Request $request){
         $request->validate([
             'email' => 'required|email',

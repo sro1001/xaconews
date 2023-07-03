@@ -40,16 +40,35 @@ class NoticiaSentimiento extends Model
 		'puntuacion'
 	];
 
+	/**
+	 * Devuelve la noticia asociada a la relación entre Noticia y Sentimiento
+	 *
+	 * @access public
+	 * @return Noticia
+	 */
 	public function noticia()
 	{
 		return $this->belongsTo(Noticia::class);
 	}
 
+	/**
+	 * Devuelve el sentimiento asociado a la relación entre Noticia y Sentimiento
+	 *
+	 * @access public
+	 * @return Sentimiento
+	 */
 	public function sentimiento()
 	{
 		return $this->belongsTo(Sentimiento::class);
 	}
 
+	/**
+	 * Obtiene los datos para el gráfico de positividad
+	 *
+	 * @access public
+	 * @static
+	 * @return Array
+	 */
 	public static function obtenerPuntuacionSentimientos(){
 		$count_registros = NoticiaSentimiento::select(DB::raw('SUM(noticias_sentimientos.puntuacion) as suma_total'))->get()[0]->suma_total;
 		$positivoNegativo_por_puntuacion = NoticiaSentimiento::where('sentimiento_id','=',Sentimiento::POSITIVO_NEGATIVO)
@@ -65,6 +84,13 @@ class NoticiaSentimiento extends Model
 				$positivoNegativo_por_puntuacion[2]->num_resultados,$positivoNegativo_por_puntuacion[3]->num_resultados];
 	}
 
+	/**
+	 * Obtiene los datos para el gráfico de puntuación por sentimiento
+	 *
+	 * @access public
+	 * @static
+	 * @return Collection|NoticiaSentimiento
+	 */
 	public static function obtenerSentimientosPorPuntuacion(){
 		$sentimientos = NoticiaSentimiento::join('sentimientos','sentimientos.id','noticias_sentimientos.sentimiento_id')
 											->select('sentimientos.nombre',DB::raw('COUNT(noticias_sentimientos.puntuacion) as casos'),DB::raw('ROUND((SUM(noticias_sentimientos.puntuacion)/COUNT(noticias_sentimientos.puntuacion))*10,1) as suma_puntuacion'))

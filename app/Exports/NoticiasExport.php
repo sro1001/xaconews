@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Exports;
 
 use App\Models\Noticia;
@@ -10,8 +14,19 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Illuminate\Support\Collection;
 
+/**
+ * Class NoticiasExport
+ *
+ * @package App\Exports
+ */
 class NoticiasExport implements FromCollection, WithColumnWidths, WithStyles
 {
+    /**
+	 * Construye una colección de objetos con la información de las noticias que se exporta a Excel
+	 *
+	 * @access public
+	 * @return Collection|Object
+	 */
     public function collection()
     {
         $coleccion_noticias = new Collection();
@@ -67,6 +82,12 @@ class NoticiasExport implements FromCollection, WithColumnWidths, WithStyles
         return $coleccion_noticias;
     }
 
+    /**
+	 * Especifica los anchos de cada columna del Excel exportado
+	 *
+	 * @access public
+	 * @return Array
+	 */
     public function columnWidths(): array
     {
         return [
@@ -93,6 +114,13 @@ class NoticiasExport implements FromCollection, WithColumnWidths, WithStyles
         ];
     }
 
+    /**
+	 * Estilos para el Excel exportado
+	 *
+	 * @access public
+     * @param Worksheet $sheet
+	 * @return Array
+	 */
     public function styles(Worksheet $sheet)
     {
         return [

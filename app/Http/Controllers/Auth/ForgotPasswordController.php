@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Created by Sergio Ruiz Orodea.
+ */
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -27,11 +31,24 @@ class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
+    /**
+	 * Devuelve la vista para enviar correo de recuperación de contraseña
+	 *
+	 * @access public
+	 * @return View
+	 */
     public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
     }
 
+    /**
+	 * Envía el correo de recuperación de contraseña
+	 *
+	 * @access public
+     * @param Request $request
+	 * @return Mail
+	 */
     public function sendResetLinkEmail(Request $request)
     {
 
