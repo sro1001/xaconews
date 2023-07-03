@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <td width="100%">
-                Hola {{$usuario->nombre_completo}}
+                Hola {{$usuario->nombre_completo}},
             </td>
         </tr>
         <tr>
@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td width="100%">
-                Has recibido este email porque has solicitado reestablecer tu contraseña. <br>
+                Has recibido este email porque has solicitado restablecer tu contraseña. <br>
                 Para completar el proceso, haz click <a href="{{route('password.reset', $token)}}">en este enlace</a>.<br>
             </td>
         </tr>
