@@ -54,17 +54,4 @@ class Sentimiento extends Model
 		return $this->belongsToMany(Noticia::class, 'noticias_sentimientos')
 					->withPivot('id', 'puntuacion');
 	}
-
-	public static function comprobarSentimiento($nombre_sentimiento,$positivo){
-		$check_sentimiento = Sentimiento::where('nombre','=',$nombre_sentimiento)->get();
-		if(count($check_sentimiento) == 0){
-			$nuevo_sentimiento = new Sentimiento();
-			$nuevo_sentimiento->nombre = $nombre_sentimiento;
-			$nuevo_sentimiento->positivo = $positivo;
-			$nuevo_sentimiento->save();
-			return $nuevo_sentimiento->id;
-		}else{
-			return $check_sentimiento[0]->id;
-		}
-	}
 }
