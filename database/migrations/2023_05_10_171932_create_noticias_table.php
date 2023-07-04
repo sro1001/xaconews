@@ -27,7 +27,6 @@ class CreateNoticiasTable extends Migration
 
             $table->foreign('bien_interes_cultural_id')->references('id')->on('bienes_interes_cultural');
             $table->foreign('fuente_id')->references('id')->on('fuentes');
-            $table->unique(array('google_news_id'));
         });
     }
 
