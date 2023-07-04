@@ -13,58 +13,47 @@ class SentimientosSeeder extends Seeder
     {
         DB::table('sentimientos')->insert([
             'id' => 1,
-            'nombre' => 'Alegría',
-            'positivo' => 1
+            'nombre' => 'Alegría'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 2,
-            'nombre' => 'Tristeza',
-            'positivo' => 0
+            'nombre' => 'Tristeza'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 3,
-            'nombre' => 'Confianza',
-            'positivo' => 1
+            'nombre' => 'Confianza'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 4,
-            'nombre' => 'Miedo',
-            'positivo' => 0
+            'nombre' => 'Miedo'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 5,
-            'nombre' => 'Orgullo',
-            'positivo' => 1
+            'nombre' => 'Orgullo'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 6,
-            'nombre' => 'Enfado',
-            'positivo' => 0
+            'nombre' => 'Enfado'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 7,
-            'nombre' => 'Satisfacción',
-            'positivo' => 1
+            'nombre' => 'Satisfacción'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 8,
-            'nombre' => 'Asco',
-            'positivo' => 0
+            'nombre' => 'Asco'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 9,
-            'nombre' => 'Amor',
-            'positivo' => 1
+            'nombre' => 'Amor'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 10  ,
-            'nombre' => 'Culpa',
-            'positivo' => 0
+            'nombre' => 'Culpa'
         ]);
         DB::table('sentimientos')->insert([
             'id' => 11  ,
-            'nombre' => 'Positividad',
-            'positivo' => 0
+            'nombre' => 'Positividad'
         ]);
     }
 }
