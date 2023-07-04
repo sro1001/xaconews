@@ -38,6 +38,13 @@ Por último, con el servidor de MySQL arrancado, podremos crear una base de dato
 
 para tener lista la base de datos con la estructura e información necesaria.
 
+# Despliegue
+
+Se ha conseguido desplegar la aplicación a través de Railway.app en el dominio https://xaconews-production.up.railway.app/
+Ya que el registro público solo ofrece acceso como rol lector, he creado un usuario administrador para las pruebas que se deseen realizar.
+Usuario: admin@xaconews.es
+Contraseña: PruebasXaconews
+
 # Pruebas en mailtrap
 Para probar los mails de recuperación de contraseña hay que acceder a mailtrap (https://mailtrap.io/signin) con las siguientes credenciales:
 Usuario: sro1001@alu.ubu.es
