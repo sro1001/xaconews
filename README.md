@@ -44,12 +44,14 @@ Se ha conseguido desplegar la aplicación a través de Railway.app en el dominio
 Ya que el registro público solo ofrece acceso como rol lector, he creado un usuario administrador para las pruebas que se deseen realizar.
 
 Usuario: admin@xaconews.es
+
 Contraseña: PruebasXaconews
 
 # Pruebas en mailtrap
 Para probar los mails de recuperación de contraseña hay que acceder a mailtrap (https://mailtrap.io/signin) con las siguientes credenciales:
 
 Usuario: sro1001@alu.ubu.es
+
 Contraseña: PruebasXaconews
 
 Para llegar a la bandeja de entrada de mail hay que seguir este link: https://mailtrap.io/inboxes/2214795/messages
