@@ -106,7 +106,7 @@ class BienInteresCultural extends Model
 		if(str_contains($cadenaFormatoGn, 'Camino')){
 			$cadenaFormatoGn = $cadenaFormatoGn.'+De+Santiago';
 		}else{
-			$cadenaFormatoGn = $cadenaFormatoGn.'Camino+De+Santiago';
+			$cadenaFormatoGn = $cadenaFormatoGn.'+Camino+De+Santiago';
 		}
 		return $cadenaFormatoGn;
 	}

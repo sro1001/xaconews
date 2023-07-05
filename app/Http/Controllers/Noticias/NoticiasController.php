@@ -41,6 +41,9 @@ class NoticiasController extends Controller
         $bienes_interes_cultural = BienInteresCultural::all();
         $count_nuevas_noticias = 0;
         foreach($bienes_interes_cultural as $bien_interes_cultural){
+            if($count_nuevas_noticias == (Noticia::MAX_NEWS_ADDED -1)){
+                break;
+            }
             $busqueda = $bien_interes_cultural->obtenerCadenaFormatoGn();
             $data_xml = simplexml_load_file(
                 config('noticias.GOOGLE_NEWS')['PREFIJO_LLAMADA'].
@@ -49,7 +52,7 @@ class NoticiasController extends Controller
             );
             foreach($data_xml->channel->item as $noticia){
                 $fecha_noticia = date_create_from_format(DateTime::RSS, $noticia->pubDate);
-                if($count_nuevas_noticias < Noticia::MAX_NEWS_ADDED){
+                if($fecha_noticia->format('Y-m-d') > Carbon::now()->subDays(10)->format('Y-m-d') && $count_nuevas_noticias < Noticia::MAX_NEWS_ADDED){
                     $sincro_noticias_control = SincronizacionNoticias::all()[0];
                     $limite_llamadas_api = $sincro_noticias_control->limite_llamadas_api_noticias;
                     $google_news_id = ((array)$noticia->guid)[0];
