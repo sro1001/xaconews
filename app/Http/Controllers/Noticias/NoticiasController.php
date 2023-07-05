@@ -39,7 +39,7 @@ class NoticiasController extends Controller
         ini_set('memory_limit','2G');
 		set_time_limit(360*60);
         $bienes_interes_cultural = BienInteresCultural::all();
-        $count_noticias = 0;
+        $count_nuevas_noticias = 0;
         foreach($bienes_interes_cultural as $bien_interes_cultural){
             $busqueda = $bien_interes_cultural->obtenerCadenaFormatoGn();
             $data_xml = simplexml_load_file(
@@ -49,9 +49,9 @@ class NoticiasController extends Controller
             );
             foreach($data_xml->channel->item as $noticia){
                 $fecha_noticia = date_create_from_format(DateTime::RSS, $noticia->pubDate);
-                if($fecha_noticia->format('Y-m-d') > Carbon::now()->subMonth()->format('Y-m-d')){
-                    $count_noticias += 1;
+                if($fecha_noticia->format('Y-m-d') > Carbon::now()->subMonth()->format('Y-m-d') && $count_nuevas_noticias < Noticia::MAX_NEWS_ADDED){
                     $sincro_noticias_control = SincronizacionNoticias::all()[0];
+                    $count_nuevas_noticias += 1;
                     $limite_llamadas_api = $sincro_noticias_control->limite_llamadas_api_noticias;
                     $google_news_id = ((array)$noticia->guid)[0];
                     $existe_noticia = Noticia::where('google_news_id',$google_news_id)->count();
@@ -117,6 +117,7 @@ class NoticiasController extends Controller
                 }
             }
         }
+        return redirect()->route('noticias.index');
     }
 
     /**
@@ -151,7 +152,8 @@ class NoticiasController extends Controller
             if(filled($request->get('estado_id'))){
                 $noticias = $noticias->where('estado_id', '=', $request->get('estado_id'));
             }
-
+            $sincro_noticias_control = SincronizacionNoticias::all()[0];
+            $limite_llamadas_chatGpt = $sincro_noticias_control->limite_llamadas_chatGPT;
             return Datatables::of($noticias->orderBy('fecha','desc')->get())
                 ->addColumn('bien_cultural', function ($item) use (&$request) {
                     return $item->bien_interes_cultural->nombre;
@@ -180,9 +182,9 @@ class NoticiasController extends Controller
                 ->addColumn('fecha_listado', function ($item) use (&$request) {
                     return $item->fecha->format('d/m/Y');
                 })
-                ->addColumn('action', function ($item) use (&$request) {
+                ->addColumn('action', function ($item) use (&$request,$limite_llamadas_chatGpt) {
                     return '<a href="'.route('noticias.ver', $item->id).'" title="Ver noticia" class="btn btn-xs btn-primary"><ion-icon name="eye"></ion-icon></a>&nbsp;
-                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" title="Ir a noticia" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;'.(($item->estado_id == NoticiaEstado::VISIBLE) ? ( (strlen($item->texto) < Noticia::MAX_CHARS_TEXTO_CHAT_GPT) ? '<a href="'.route('sentimientos.analisis_sentimientos', $item->id).'" title="Analizar noticia" class="btn btn-xs btn-primary"><ion-icon name="bar-chart"></ion-icon></a>&nbsp;': '<a class="btn btn-xs btn-primary" onclick="script_noticias.modal_aviso_longitud(event)" data-id="'.$item->id.'" title="Analizar noticia" data-url="'.route('usuarios.cambiar_estado').'"><ion-icon name="bar-chart"></ion-icon></a>' ): '');
+                        <a href="'.$item->url.'" class="btn btn-xs btn-primary" title="Ir a noticia" target="_blanck"><ion-icon name="arrow-redo-circle"></ion-icon></a>&nbsp;'.(($item->estado_id == NoticiaEstado::VISIBLE) ? ( (strlen($item->texto) < Noticia::MAX_CHARS_TEXTO_CHAT_GPT) ? (($limite_llamadas_chatGpt > 0) ? '<a href="'.route('sentimientos.analisis_sentimientos', $item->id).'" title="Analizar noticia" class="btn btn-xs btn-primary"><ion-icon name="bar-chart"></ion-icon></a>&nbsp;' : '<a class="btn btn-xs btn-primary" onclick="script_noticias.modal_aviso_limite_api(event)" data-id="'.$item->id.'" title="Analizar noticia"><ion-icon name="bar-chart"></ion-icon></a>'):'<a class="btn btn-xs btn-primary" onclick="script_noticias.modal_aviso_longitud(event)" data-id="'.$item->id.'" title="Analizar noticia" data-url="'.route('usuarios.cambiar_estado').'"><ion-icon name="bar-chart"></ion-icon></a>' ): '');
                 })
                 ->rawColumns(['action','estado'])
                 ->setRowId('orden')

@@ -112,11 +112,12 @@ class AnalisisNoticiasController extends Controller
         }
         $texto_respuesta_positividad = json_decode($respuesta_positividad)->choices[0]->text;
         $contenido_respuesta = str_replace('"','',preg_replace('/\r\n|\r|\n/','', $texto_respuesta_positividad));
-        if(is_numeric(trim($contenido_respuesta))){
+        $respuesta_limpia = str_replace(config('noticias.CHATGPT')['QUESTION_POSITIVIDAD'],'',$contenido_respuesta);
+        if(is_numeric(trim($respuesta_limpia))){
             $noticia_sentimiento = new NoticiaSentimiento();
             $noticia_sentimiento->noticia_id = $noticia_id;
             $noticia_sentimiento->sentimiento_id = Sentimiento::POSITIVO_NEGATIVO;
-            $noticia_sentimiento->puntuacion = trim($contenido_respuesta);
+            $noticia_sentimiento->puntuacion = trim($respuesta_limpia);
             $noticia_sentimiento->save();
         }
         $noticia->estado_id = NoticiaEstado::VISIBLE_ANALIZADA;

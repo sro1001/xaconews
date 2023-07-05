@@ -62,6 +62,9 @@ class Noticia extends Model
 	//Máximo de caracteres en una noticia para analizar su texto
 	const MAX_CHARS_TEXTO_CHAT_GPT = 8000;
 
+	//Máximo de noticias añadidas por ejecución
+	const MAX_NEWS_ADDED = 10;
+
 	/**
 	 * Devuelve el bien de interés cultural asociado a la noticia
 	 *

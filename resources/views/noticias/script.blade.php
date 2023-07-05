@@ -73,6 +73,16 @@
             });
         };
 
+        let modal_aviso_limite_api = function(event) {
+            event.preventDefault();
+            swal({
+                title: "Límite alcanzado",
+                text: "Se ha superado el límite de llamadas a la API de OpenAI. Disculpe las molestias",
+                icon: "warning",
+                dangerMode: true,
+            });
+        };
+
         return {
             init: function() {
 
@@ -89,6 +99,9 @@
             },
             modal_aviso_longitud: function (btn) {
                 modal_aviso_longitud(btn);
+            },
+            modal_aviso_limite_api: function (btn) {
+                modal_aviso_limite_api(btn);
             }
         };
     }();
