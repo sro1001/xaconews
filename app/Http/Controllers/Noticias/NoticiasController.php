@@ -41,7 +41,7 @@ class NoticiasController extends Controller
         $bienes_interes_cultural = BienInteresCultural::all();
         $count_nuevas_noticias = 0;
         foreach($bienes_interes_cultural as $bien_interes_cultural){
-            if($count_nuevas_noticias == (Noticia::MAX_NEWS_ADDED -1)){
+            if($count_nuevas_noticias == Noticia::MAX_NEWS_ADDED){
                 break;
             }
             $busqueda = $bien_interes_cultural->obtenerCadenaFormatoGn();
