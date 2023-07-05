@@ -50,15 +50,16 @@ class NoticiasController extends Controller
             foreach($data_xml->channel->item as $noticia){
                 $fecha_noticia = date_create_from_format(DateTime::RSS, $noticia->pubDate);
                 dump($fecha_noticia);
+                dump($fecha_noticia->format('Y-m-d'));
+                dump(Carbon::now()->subMonth()->format('Y-m-d'));
+
                 if($fecha_noticia->format('Y-m-d') > Carbon::now()->subMonth()->format('Y-m-d') && $count_nuevas_noticias < Noticia::MAX_NEWS_ADDED){
                     $sincro_noticias_control = SincronizacionNoticias::all()[0];
                     $count_nuevas_noticias += 1;
                     $limite_llamadas_api = $sincro_noticias_control->limite_llamadas_api_noticias;
                     $google_news_id = ((array)$noticia->guid)[0];
                     $existe_noticia = Noticia::where('google_news_id',$google_news_id)->count();
-                    dump("noticia");
                     if($existe_noticia == 0 && $limite_llamadas_api > 25){
-                        dump("no existe");
                         $nueva_noticia = new Noticia();
                         $nueva_noticia->google_news_id = $google_news_id;
                         $nueva_noticia->bien_interes_cultural_id = $bien_interes_cultural->id;
@@ -87,7 +88,6 @@ class NoticiasController extends Controller
                                 break;
                             }
                         }
-                        dump("obtener texto");
                         $llamada_texto_noticia = curl_init();
                         curl_setopt($llamada_texto_noticia, CURLOPT_URL, config('noticias.RAPID_API')['URL']);
                         curl_setopt($llamada_texto_noticia, CURLOPT_RETURNTRANSFER, true);
@@ -114,14 +114,13 @@ class NoticiasController extends Controller
                         if(!empty($texto_noticia['title'])){
                             $nueva_noticia->titulo = $texto_noticia['title'];
                         }
-                        dump("guardamos");exit;
                         $nueva_noticia->save();
                         $sincro_noticias_control->limite_llamadas_api_noticias = $sincro_noticias_control->limite_llamadas_api_noticias - 1;
                         $sincro_noticias_control->save();
                     }
                 }
-            }
-        }exit;
+            }exit;
+        }
         return redirect()->route('noticias.index');
     }
 
