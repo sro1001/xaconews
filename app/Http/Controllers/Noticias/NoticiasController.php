@@ -47,6 +47,7 @@ class NoticiasController extends Controller
                 $busqueda.
                 config('noticias.GOOGLE_NEWS')['SUFIJO_LLAMADA']
             );
+            dd($data_xml);exit;
             foreach($data_xml->channel->item as $noticia){
                 $fecha_noticia = date_create_from_format(DateTime::RSS, $noticia->pubDate);
                 if($fecha_noticia->format('Y-m-d') > Carbon::now()->subMonth()->format('Y-m-d') && $count_nuevas_noticias < Noticia::MAX_NEWS_ADDED){
