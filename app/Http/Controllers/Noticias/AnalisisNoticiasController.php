@@ -43,7 +43,7 @@ class AnalisisNoticiasController extends Controller
         $datosSentimientosChartDataCasos = $datosSentimientosChart->pluck('casos')->toArray();
         return view('sentimientos.index', [
             'positiveChartLabels' => json_encode(array_values($positiveChartLabels)),
-            'positiveChartData' => json_encode(array_values($positiveChartData)),
+            'positiveChartData' => json_encode(array_reverse(array_values($positiveChartData))),
             'sentimientosChartLabels' => json_encode(array_values($sentimientosChartLabels)),
             'sentimientosChartDataCasos' => json_encode(array_values($datosSentimientosChartDataCasos)),
             'sentimientosChartDataPuntuacion' => json_encode(array_values($datosSentimientosChartDataPuntuacion))
